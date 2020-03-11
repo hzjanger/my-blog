@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+}
+
+.p-2 {
+  padding: 1rem;
+}
+
+.operation-column {
+  a {
+    cursor: pointer;
+    padding-right: 1rem;
+
+    &:hover {
+      color: #ea6f5a;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="p-2">
+  <table *ngIf="blogTag" mat-table [dataSource]="blogTag" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>编号</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.id}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tagName">
+      <th mat-header-cell *matHeaderCellDef>标签名称</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.tagName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="blogType">
+      <th mat-header-cell *matHeaderCellDef>所属分类</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.blogType.typeName}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="operation">
+      <th mat-header-cell *matHeaderCellDef [width]="'100px'">操作</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="operation-column">
+          <a>编辑</a>
+          <a>删除</a>
+        </div>
+      </td>
+    </ng-container>
+
+    <!--    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">-->
+    <!--      <th mat-header-cell *matHeaderCellDef-->
+    <!--          [width]="column === 'operation' ? '100px': 'auto'"> {{description[column]}}</th>-->
+    <!--      <td mat-cell *matCellDef="let element">-->
+    <!--        <ng-template [ngIf]="column !== 'operation'">{{element[column]}}</ng-template>-->
+    <!--        <ng-template [ngIf]="column === 'operation'">-->
+
+    <!--        </ng-template>-->
+    <!--      </td>-->
+    <!--    </ng-container>-->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+</div>
