@@ -14,5 +14,5 @@ public class Constant {
      */
     public static final String JWT_SECRET = "098f6bcd4621d373cade4e832627b4f6";
 
-    public static final int JWT_TTL = 60 * 60 * 1000;
+    public static final int JWT_TTL = 8 * 60 * 60 * 1000;
 }
