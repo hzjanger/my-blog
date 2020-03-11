@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="content">
+    <div class="title">
+      <h3>最新发布</h3>
+    </div>
+    <div class="blog-content-box">
+      <div class="left-container">
+        <ng-template [ngIf]="pageResult">
+          <div class="article" *ngFor="let blog of pageResult.rows">
+            <a class="img-box">
+              <img alt="图片" src="https://tendcode.com/cdn/article/181223/docker.jpg">
+            </a>
+            <div>
+              <h3 class="article-title">
+                <a [routerLink]="['./article/details', nickName, blog.id]">{{blog.title}}</a>
+              </h3>
+              <p>我的 Jenkins 是运行在容器中的（之前有文章已经分享过容器运行 Jenkins 的方式），所以很显然，容器能执行的任务非常有限，甚至可以说是基本没啥用。但是那都不是事儿，毕竟 Jenkins
+                一般来说也不是单机执行，而是会配置主从节多节点执行任务，不同的</p>
+              <div class="action">
+                <a>
+                  <mat-icon>alarm</mat-icon>
+                  <span>{{blog.updateDate | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                </a>
+                <a>
+                  <mat-icon>label</mat-icon>
+                  类别
+                </a>
+                <a>
+                  <mat-icon>label</mat-icon>
+                  标签
+                </a>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div class="right-container">
+        <div class="card">
+          <div class="card-title">
+            <h3>文章分类</h3>
+          </div>
+          <ul class="type-menu" *ngIf="blogTypeAccount">
+            <li class="type-menu-item" *ngFor="let item of blogTypeAccount">
+              <a>{{item.typeName}}</a>
+              <span>{{item.account}}篇</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <h3>归档</h3>
+          </div>
+          <ul class="type-menu">
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <h3>标签</h3>
+          </div>
+          <ul class="type-menu">
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+            <li class="type-menu-item">
+              <a>前端</a>
+              <span>10篇</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
