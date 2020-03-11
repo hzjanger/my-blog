@@ -1,0 +1,5 @@
+<mat-nav-list *ngIf="menuList">
+  <mat-list-item *ngFor="let menu of menuList">
+    <a matLine [routerLink]="menu.router">{{menu.title}}</a>
+  </mat-list-item>
+</mat-nav-list>

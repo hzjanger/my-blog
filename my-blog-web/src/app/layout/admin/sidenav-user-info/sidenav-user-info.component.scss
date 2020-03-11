@@ -1,0 +1,39 @@
+.user-info-box {
+  position: relative;
+
+  .background-img {
+    width: 100%;
+  }
+
+  .avatar {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 64px;
+    height: 64px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    transition: transform 2s ease-in-out, -webkit-transform 2s ease-in-out;
+
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+
+  .user-info-action {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    color: #ffffff;
+    font-size: .85rem;
+
+    //.email {
+    //  mat-icon {
+    //    color: #ffffff;
+    //  }
+    //}
+  }
+}

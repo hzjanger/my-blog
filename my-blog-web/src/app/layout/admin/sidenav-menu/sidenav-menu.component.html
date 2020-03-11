@@ -1,0 +1,13 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let sidenav of sidenavMenu">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>{{sidenav.icon}}</mat-icon>
+        <span class="title-text">{{sidenav.title}}</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <app-sidenav-menu-item [menuList]="sidenav.children"></app-sidenav-menu-item>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>
