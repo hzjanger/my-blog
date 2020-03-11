@@ -1,0 +1,57 @@
+.background-cover {
+  background-color: #1976d2;
+  width: 100%;
+  height: 144px;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: auto;
+  background: #ffffff;
+  display: flex;
+
+  .article-content {
+    width: 738px;
+    margin-top: -94px;
+    border-radius: 5px;
+    z-index: 2;
+
+    .article {
+      padding: 20px;
+    }
+  }
+
+  .menu {
+
+  }
+
+
+}
+
+:host ::ng-deep {
+  .editormd-html-preview {
+    padding: 0;
+    width: auto;
+    border-radius: 5px;
+  }
+
+  .menu {
+    .markdown-toc-list {
+      list-style: none;
+
+      > li > ul {
+        list-style: none;
+      }
+
+      .toc-level-2, .toc-level-3 {
+        cursor: pointer;
+        color: #727272;
+
+        &:hover {
+          color: #3f51b5;
+        }
+      }
+    }
+  }
+}

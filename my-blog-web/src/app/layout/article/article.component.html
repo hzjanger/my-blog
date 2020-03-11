@@ -1,0 +1,10 @@
+<div class="background-cover"></div>
+<div class="container">
+  <div class="article-content">
+    <div class="article mat-elevation-z8" id="append-test" data-toggle="custom-toc-container" *ngIf="blog"
+         appMarkdownToHTML [markdown]="blog.markdown" (anchorPress)="anchorPress($event)"></div>
+  </div>
+  <div class="menu">
+    <div class="markdown-body editormd-preview-container" id="custom-toc-container">#custom-toc-container</div>
+  </div>
+</div>
