@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzj.myblog.mapper.BlogMapper">
+
+    <!--    添加博客-->
+    <insert id="addBlog" useGeneratedKeys="true" keyProperty="id" parameterType="com.hzj.myblog.model.Blog">
+        INSERT INTO blog(title, markdown, userId, blogTypeId, tagId, updateDate)
+        VALUE (#{title}, #{markdown}, #{userId}, #{blogTypeId}, #{tagId}, #{updateDate})
+    </insert>
+
+    <!--    通过用户id查找博客-->
+    <select id="findBlogByUserId" parameterType="java.lang.Integer" resultType="com.hzj.myblog.model.Blog">
+        SELECT id, title, markdown, userId, blogTypeId, tagId, updateDate
+        FROM blog
+        WHERE userId = #{userId}
+    </select>
+
+    <!--    查询最新发布的博客-->
+    <select id="findNewestBlog" parameterType="java.lang.Integer" resultType="com.hzj.myblog.model.Blog">
+        SELECT id, title, userId, blogTypeId, tagId, updateDate
+        FROM (SELECT id, title, userId, blogTypeId, tagId, updateDate FROM blog WHERE userId = #{userId}) as b
+        ORDER BY updateDate DESC
+    </select>
+
+    <!--    更新博客信息-->
+    <update id="updateBlog" parameterType="com.hzj.myblog.model.Blog">
+        UPDATE blog SET title = #{title}, markdown = #{markdown}, userId = #{userId}, blogTypeId = #{blogTypeId}, tagId = #{tagId}, updateDate = #{updateDate}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
