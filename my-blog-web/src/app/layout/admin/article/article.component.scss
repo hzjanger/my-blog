@@ -1,0 +1,14 @@
+.markdown-box {
+  padding: 1rem;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  mat-form-field {
+    flex: 1;
+    padding-right: .5rem;
+  }
+}

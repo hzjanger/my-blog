@@ -1,0 +1,17 @@
+<form [formGroup]="formGroup">
+  <dialog-layout [dialogTitle]="dialogTitle" (cancelPress)="dialogRef.close()" (okPress)="sure()">
+    <div class="form-field-box">
+      <mat-form-field>
+        <mat-select formControlName="blogTypeId" placeholder="文章类别"
+                    (selectionChange)="selectionChange($event)">
+          <mat-option *ngFor="let option of blogType" [value]="option.id">{{option.typeName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select formControlName="tagId" placeholder="标签">
+          <mat-option *ngFor="let option of tagList" [value]="option.id">{{option.tagName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </dialog-layout>
+</form>

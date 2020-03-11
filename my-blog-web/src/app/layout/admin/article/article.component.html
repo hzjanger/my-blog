@@ -1,0 +1,12 @@
+<div class="markdown-box">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <mat-form-field>
+      <input matInput placeholder="文章名称" formControlName="title">
+      <mat-error *ngIf="title.invalid">{{getTitleErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-button>保存</button>
+    </div>
+  </form>
+  <app-eidtor-md key="markdown" [conf]="config" [markdownForm]="formGroup"></app-eidtor-md>
+</div>
