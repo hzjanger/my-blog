@@ -1,0 +1,36 @@
+[
+  {
+    "title": "文章",
+    "icon": "home",
+    "children": [
+      {
+        "title": "发布文章",
+        "router": "./article"
+      },
+      {
+        "title": "文章管理",
+        "router": "./article/my"
+      }
+    ]
+  },
+  {
+    "title": "分类管理",
+    "icon": "home",
+    "children": [
+      {
+        "title": "分类管理",
+        "router": "/admin/type"
+      }
+    ]
+  },
+  {
+    "title": "标签管理",
+    "icon": "home",
+    "children": [
+      {
+        "title": "标签管理",
+        "router": "/admin/label"
+      }
+    ]
+  }
+]
