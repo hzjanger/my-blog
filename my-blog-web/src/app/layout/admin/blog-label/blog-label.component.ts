@@ -2,6 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {CodeEnum} from "../../../entity/code-enum";
 import {TagService} from "../../../@core/interface/tag-service";
 import {TagBlogTypeGroup} from "../../../entity/group/TagBlogTypeGroup";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  EditBlogLabelDialogComponent,
+  EditBlogLabelDialogInputModule
+} from "./edit-blog-label-dialog/edit-blog-label-dialog.component";
+import {Tag} from "../../../model/tag";
+import {SnackBarService} from "../../../service/snackBar.service";
 
 @Component({
   selector: 'app-blog-label',
@@ -20,17 +27,45 @@ export class BlogLabelComponent implements OnInit {
 
   blogTag: TagBlogTypeGroup[];
 
-  constructor(private tagService: TagService) {
+  constructor(private tagService: TagService, private dialog: MatDialog, private snackbarService: SnackBarService) {
   }
 
   ngOnInit() {
-    this.getType();
+    this.findAllTag();
   }
 
-  getType() {
+  findAllTag() {
     this.tagService.findAllTag().subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.blogTag = data.data;
+      }
+    })
+  }
+
+  edit(tagBlogTypeGroup: TagBlogTypeGroup) {
+    let tag: Tag = {
+      tagName: tagBlogTypeGroup.tagName,
+      blogTypeId: tagBlogTypeGroup.blogTypeId,
+      id: tagBlogTypeGroup.id
+    };
+    const dialogInputData: EditBlogLabelDialogInputModule = {
+      dialogTitle: '更改标签名称',
+      tag
+    };
+    const dialogRef = this.dialog.open(EditBlogLabelDialogComponent, {
+      width: '520px',
+      data: dialogInputData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        tag = Object.assign(tag, result);
+        this.tagService.updateTag(tag).subscribe(data => {
+          if (data.code === CodeEnum.SUCCESS) {
+            this.snackbarService.success(data.message);
+            this.findAllTag();
+          }
+
+        })
       }
     })
   }

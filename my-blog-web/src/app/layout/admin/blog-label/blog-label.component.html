@@ -26,7 +26,7 @@
       <th mat-header-cell *matHeaderCellDef [width]="'100px'">操作</th>
       <td mat-cell *matCellDef="let element">
         <div class="operation-column">
-          <a>编辑</a>
+          <a (click)="edit(element)">编辑</a>
           <a>删除</a>
         </div>
       </td>

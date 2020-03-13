@@ -1,0 +1,12 @@
+<form [formGroup]="formGroup">
+  <dialog-layout *ngIf="dialogInputData" [dialogTitle]="dialogInputData.dialogTitle" (okPress)="okPress()" (cancelPress)="cancel()">
+    <mat-form-field>
+      <mat-select placeholder="选择分类" formControlName="blogTypeId">
+        <mat-option [value]="option.id" *ngFor="let option of blogTypeList">{{option.typeName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="请输入博客标签" formControlName="tagName">
+    </mat-form-field>
+  </dialog-layout>
+</form>

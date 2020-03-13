@@ -1,5 +1,16 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
+export interface DialogLayoutInputModule {
+  /**
+   * 弹窗标题名称
+   */
+  dialogTitle: string;
+  /**
+   * 是否显示确认按钮
+   */
+  isShowOk?: boolean;
+}
+
 @Component({
   selector: 'dialog-layout',
   templateUrl: './dialog.layout.component.html',

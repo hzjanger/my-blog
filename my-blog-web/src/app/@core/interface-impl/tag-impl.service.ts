@@ -43,7 +43,12 @@ export class TagImplService extends TagService {
     return this.http.get<ReturnModel<Tag[]>>(`${this.url}/findTagByBlogTypeId/${blogTypeId}`);
   }
 
-  updateTag(tag: Tag) {
+  /**
+   * 更新标签的内容
+   * @param tag 标签信息
+   */
+  updateTag(tag: Tag): Observable<ReturnModel<Tag>> {
+    return this.http.put<ReturnModel<Tag>>(`${this.url}/updateTag`, tag);
   }
 
 }

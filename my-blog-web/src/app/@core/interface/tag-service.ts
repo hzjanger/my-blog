@@ -38,5 +38,5 @@ export abstract class TagService {
    *
    * @param tag 标签信息
    */
-  abstract updateTag(tag: Tag);
+  abstract updateTag(tag: Tag): Observable<ReturnModel<Tag>>;
 }
