@@ -32,6 +32,14 @@ public interface UserService {
     List<User> findAllUser();
 
     /**
+     * 通过用户的昵称查询用户的信息
+     *
+     * @param nickName 用户昵称
+     * @return 用户的信息
+     */
+    User findUserByNickname(String nickName);
+
+    /**
      * 创建用户
      *
      * @param user 用户信息

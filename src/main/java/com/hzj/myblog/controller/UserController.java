@@ -82,6 +82,16 @@ public class UserController {
         return userService.findAllUser();
     }
 
+    @GetMapping("/findUserByNickname/{nickName}")
+    @ApiOperation(value = "通过用户的昵称查询用户信息", notes = "通过用户的昵称查询用户信息")
+    public ReturnResponse<User> findUserByNickname(@PathVariable("nickName") String nickName) {
+        User user = userService.findUserByNickname(nickName);
+        if (user == null) {
+            return new ReturnResponse<>(0, "查询失败");
+        }
+        return new ReturnResponse<>(1, "查询成功", user);
+    }
+
     /**
      * 发送注册邮件
      *
