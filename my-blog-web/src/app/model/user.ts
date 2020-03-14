@@ -18,4 +18,9 @@ export interface User {
    */
   password: string;
 
+  /**
+   * 昵称
+   */
+  nickName: string;
+
 }

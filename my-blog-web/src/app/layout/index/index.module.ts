@@ -3,10 +3,8 @@ import {CommonModule} from '@angular/common';
 
 import {IndexRoutingModule} from './index-routing.module';
 import {IndexComponent} from './index.component';
-import {MatToolbarModule} from "@angular/material/toolbar";
 import {IndexContentComponent} from "./index-content/index-content.component";
-import {MatIconModule} from "@angular/material/icon";
-import {MatMenuModule} from "@angular/material/menu";
+import {MaterialModule} from "../../@material/material.module";
 
 
 @NgModule({
@@ -17,9 +15,8 @@ import {MatMenuModule} from "@angular/material/menu";
   imports: [
     CommonModule,
     IndexRoutingModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule
+    MaterialModule,
+
   ]
 })
 export class IndexModule {

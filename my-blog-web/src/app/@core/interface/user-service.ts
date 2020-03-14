@@ -15,6 +15,12 @@ export abstract class UserService {
   abstract register(register: { account: string, password: string }): Observable<ReturnModel<User>>;
 
   /**
+   * 通过用户的昵称查询用户的信息
+   * @param nickName 用户昵称
+   */
+  abstract findUserByNickname(nickName: string): Observable<ReturnModel<User>>;
+
+  /**
    * 发送邮箱验证码
    * @param email 邮箱地址
    */

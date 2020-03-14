@@ -36,6 +36,14 @@ export class UserImplService extends UserService {
   }
 
   /**
+   * 通过用户的昵称查询用户的信息
+   * @param nickName 用户昵称
+   */
+  findUserByNickname(nickName: string): Observable<ReturnModel<User>> {
+    return this.http.get<ReturnModel<User>>(`${this.url}/findUserByNickname/${nickName}`);
+  }
+
+  /**
    * 发送邮箱验证码
    * @param email 邮箱地址
    */

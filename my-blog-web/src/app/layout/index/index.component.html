@@ -1,6 +1,6 @@
 <mat-toolbar class="mat-elevation-z3">
   <span class="title">
-    <a routerLink="/">Angel</a>
+    <a [routerLink]="['/blog', nickName]">Angel</a>
   </span>
   <ul class="menu" *ngIf="!isLogin">
     <li class="menu-item">
@@ -15,6 +15,7 @@
       <img src="assets/img/avatar.jpg" alt="头像">
     </div>
     <mat-menu #menu>
+      <button mat-menu-item routerLink="/admin/article">后台管理</button>
       <button mat-menu-item (click)="quit()">退出登录</button>
     </mat-menu>
   </div>

@@ -1,18 +1,18 @@
 <div class="container-box">
-  <div class="information-box">
+  <div class="information-box" *ngIf="userInfo">
     <div class="avatar-box">
       <img src="assets/img/avatar.jpg" alt="头像">
     </div>
     <div class="name-box">
       <h2>
-        <a routerLink="./index">何志坚</a>
+        <a [routerLink]="['article', userInfo.userId]">{{userInfo.nickName}}</a>
       </h2>
       <p>个人站</p>
     </div>
     <p class="welcome">欢迎来到我的个人站~</p>
     <ul class="nav-box">
       <li class="nav-item">
-        <a class="nav-link" routerLink="./index">博客主页</a>
+        <a class="nav-link" [routerLink]="['article', userInfo.userId]">博客主页</a>
       </li>
       <li class="nav-item">
         <a class="nav-link">简历</a>

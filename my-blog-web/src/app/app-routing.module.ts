@@ -12,13 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./layout/admin/admin.module').then(mod => mod.AdminModule)
   },
   {
-    path: '',
+    path: 'blog/:nickName',
     loadChildren: () => import('./layout/angel/angel.module').then(mod => mod.AngelModule)
   },
-  {
-    path: 'index',
-    loadChildren: () => import('./layout/index/index.module').then(mod => mod.IndexModule)
-  }
+  {path: '', redirectTo: 'user', pathMatch: 'full'}
 ];
 
 @NgModule({

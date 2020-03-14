@@ -4,7 +4,11 @@ import {IndexComponent} from "./index/index.component";
 
 
 const routes: Routes = [
-  {path: '', component: IndexComponent}
+  {path: '', component: IndexComponent},
+  {
+    path: 'article/:id',
+    loadChildren: () => import('../index/index.module').then(mod => mod.IndexModule)
+  }
 ];
 
 @NgModule({

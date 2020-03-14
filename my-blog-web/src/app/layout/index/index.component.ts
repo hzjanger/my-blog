@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorService} from "../../@core/interface/author.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-index',
@@ -8,10 +9,13 @@ import {AuthorService} from "../../@core/interface/author.service";
 })
 export class IndexComponent implements OnInit {
 
-  constructor(private authorService: AuthorService) {
+  nickName: string;
+
+  constructor(private authorService: AuthorService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.nickName = this.route.snapshot.paramMap.get('nickName');
   }
 
   /**
@@ -26,7 +30,6 @@ export class IndexComponent implements OnInit {
    * 退出登录
    */
   quit() {
-    console.log('退出登录');
     this.authorService.quit();
   }
 

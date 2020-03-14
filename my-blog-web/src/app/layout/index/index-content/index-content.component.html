@@ -32,6 +32,8 @@
               </div>
             </div>
           </div>
+          <mat-paginator [length]="pageResult.total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+                         (page)="page($event)"></mat-paginator>
         </ng-template>
       </div>
       <div class="right-container">
