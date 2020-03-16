@@ -99,10 +99,12 @@
         span {
           color: #858585;
           font-size: .85rem;
+          cursor: pointer;
         }
 
         a {
           text-decoration: none;
+          cursor: pointer;
 
           &:hover {
             color: #ea6f5a;

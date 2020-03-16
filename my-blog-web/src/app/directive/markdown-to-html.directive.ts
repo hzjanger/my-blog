@@ -1,4 +1,5 @@
 import {AfterViewInit, Attribute, Directive, EventEmitter, Input, Output} from '@angular/core';
+import {HtmlEscape} from "../utils/html-escape";
 
 declare var editormd: any;
 
@@ -24,6 +25,7 @@ export class MarkdownToHTMLDirective implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.markdown = HtmlEscape.htmlEncode(this.markdown);
     //可以调用editor中的方法
     this.editor = editormd.markdownToHTML(this.id, {
       markdown: this.markdown,//+ "\r\n" + $("#append-test").text(),

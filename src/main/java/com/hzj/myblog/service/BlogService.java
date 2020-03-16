@@ -1,5 +1,6 @@
 package com.hzj.myblog.service;
 
+import com.hzj.myblog.entity.group.BlogAndTypeAndTagGroup;
 import com.hzj.myblog.model.Blog;
 
 import java.util.List;
@@ -42,12 +43,15 @@ public interface BlogService {
     List<Blog> findBlogByUserId(Integer userId);
 
     /**
-     * 得到最新的博客列表
+     * 搜索用户的博客列表
      *
      * @param userId 用户id
+     * @param  blogType 博客分类
+     * @param searchValue 博客内容
      * @return 查找的博客列表
+     *
      */
-    List<Blog> findNewestBlog(Integer userId);
+    List<BlogAndTypeAndTagGroup> searchUserBlog(Integer userId, String blogType, String searchValue);
 
     /**
      * 通过用户id和博客标题查询博客

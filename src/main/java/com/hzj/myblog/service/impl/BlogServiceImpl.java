@@ -1,5 +1,6 @@
 package com.hzj.myblog.service.impl;
 
+import com.hzj.myblog.entity.group.BlogAndTypeAndTagGroup;
 import com.hzj.myblog.mapper.BlogMapper;
 import com.hzj.myblog.model.Blog;
 import com.hzj.myblog.service.BlogService;
@@ -42,14 +43,22 @@ public class BlogServiceImpl implements BlogService {
     }
 
     /**
-     * 得到最新的博客列表
+     * 搜索用户的博客列表
      *
-     * @param userId 用户id
+     * @param userId      用户id
+     * @param blogType    博客分类
+     * @param searchValue 博客内容
      * @return 查找的博客列表
      */
     @Override
-    public List<Blog> findNewestBlog(Integer userId) {
-        return blogMapper.findNewestBlog(userId);
+    public List<BlogAndTypeAndTagGroup> searchUserBlog(Integer userId, String blogType, String searchValue) {
+        if ("null".equals(blogType)) {
+            blogType = null;
+        }
+        if ("null".equals(searchValue)) {
+            searchValue = null;
+        }
+        return blogMapper.searchUserBlog(userId, blogType, searchValue);
     }
 
     @Override

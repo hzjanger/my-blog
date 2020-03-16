@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {path: '', component: IndexContentComponent},
       {
-        path: 'article',
+        path: 'detail/:blogId',
         loadChildren: () => import('../article/article.module').then(mod => mod.ArticleModule)
       },
     ]

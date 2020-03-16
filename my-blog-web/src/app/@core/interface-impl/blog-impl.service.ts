@@ -3,11 +3,10 @@ import {BlogService} from "../interface/blog.service";
 import {Blog} from "../../model/blog";
 import {ProxyPrefix} from "../../entity/proxyPrefix";
 import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {ReturnModel} from "../../entity/return-model";
 import {PageResult} from "../../entity/page-result";
-import {concatMap} from "rxjs/operators";
-import {HtmlEscape} from "../../utils/html-escape";
+import {BlogAndTypeAndTagGroup} from "../../entity/group/BlogAndTypeAndTagGroup";
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +38,23 @@ export class BlogImplService extends BlogService {
   /**
    * 分页查询用户最新的文章
    * @param userId 用户id
-   * @param current 页数
+   * @param pageIndex 页数
    * @param pageSize 页条数
    */
-  findNewestBlog(userId: number, current: number = 1, pageSize: number = 10): Observable<ReturnModel<PageResult<Blog>>> {
-    return this.http.get<ReturnModel<PageResult<Blog>>>(`${this.url}/findNewestBlog/${userId}?current=${current}&pageSize=${pageSize}`);
+  findNewestBlog(userId: number, pageIndex: number = 1, pageSize: number = 10): Observable<ReturnModel<PageResult<Blog>>> {
+    return this.http.get<ReturnModel<PageResult<Blog>>>(`${this.url}/searchUserBlog/${userId}?pageIndex=${pageIndex}&pageSize=${pageSize}`);
+  }
+
+  /**
+   * 用户博客搜索
+   * @param userId 用户id
+   * @param pageIndex 页数
+   * @param pageSize 页条数
+   * @param type 博客分类
+   * @param search 搜索内容
+   */
+  searchUserBlog(userId: number, pageIndex: number = 1, pageSize: number = 10, type: string = null, search: string = null): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>> {
+    return this.http.get<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>(`${this.url}/searchUserBlog/${userId}?pageIndex=${pageIndex}&pageSize=${pageSize}&blogType=${type}&searchValue=${search}`);
   }
 
   /**
@@ -52,14 +63,7 @@ export class BlogImplService extends BlogService {
    * @param isEncode 是否转义,默认转义
    */
   findBlogById(id: number, isEncode: boolean = true): Observable<ReturnModel<Blog>> {
-    return this.http.get<ReturnModel<Blog>>(`${this.url}/findBlogById/${id}`).pipe(
-      concatMap(val => {
-        if (isEncode) {
-          val.data.markdown = HtmlEscape.htmlEncode(val.data.markdown);
-        }
-        return of(val)
-      })
-    );
+    return this.http.get<ReturnModel<Blog>>(`${this.url}/findBlogById/${id}`);
   }
 
   /**

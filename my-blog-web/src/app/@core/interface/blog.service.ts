@@ -2,6 +2,7 @@ import {Blog} from "../../model/blog";
 import {Observable} from "rxjs";
 import {PageResult} from "../../entity/page-result";
 import {ReturnModel} from "../../entity/return-model";
+import {BlogAndTypeAndTagGroup} from "../../entity/group/BlogAndTypeAndTagGroup";
 
 export abstract class BlogService {
   /**
@@ -23,6 +24,8 @@ export abstract class BlogService {
    * @param pageSize 页条数
    */
   abstract findNewestBlog(userId: number, current?: number, pageSize?: number): Observable<ReturnModel<PageResult<Blog>>>;
+
+  abstract searchUserBlog(userId: number, current: number, pageSize: number, type?: string, search?: string): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>;
 
   /**
    * 通过用户的id和博客的标题查询博客

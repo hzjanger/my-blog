@@ -21,7 +21,7 @@
         </div>
         <div class="action-right">
           <a [routerLink]="['/admin/article/edit', article.id]">编辑</a>
-          <a [routerLink]="['/index/article/details', nickName, article.id]">查看</a>
+          <a [routerLink]="['/blog', nickName, 'article', userId]">查看</a>
           <a (click)="deleteBlog(article)">删除</a>
         </div>
       </div>

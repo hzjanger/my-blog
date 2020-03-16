@@ -5,6 +5,7 @@ import {IndexRoutingModule} from './index-routing.module';
 import {IndexComponent} from './index.component';
 import {IndexContentComponent} from "./index-content/index-content.component";
 import {MaterialModule} from "../../@material/material.module";
+import {ThemeModule} from "../../@theme/theme.module";
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {MaterialModule} from "../../@material/material.module";
     CommonModule,
     IndexRoutingModule,
     MaterialModule,
+    ThemeModule,
 
   ]
 })

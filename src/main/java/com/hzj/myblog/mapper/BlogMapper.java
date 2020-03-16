@@ -1,5 +1,6 @@
 package com.hzj.myblog.mapper;
 
+import com.hzj.myblog.entity.group.BlogAndTypeAndTagGroup;
 import com.hzj.myblog.model.Blog;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
@@ -43,12 +44,14 @@ public interface BlogMapper {
     List<Blog> findBlogByUserId(Integer userId);
 
     /**
-     * 得到最新的博客列表
+     * 搜索用户的博客列表
      *
-     * @param userId 用户的id
+     * @param userId      用户id
+     * @param blogType    博客分类
+     * @param searchValue 博客内容
      * @return 查找的博客列表
      */
-    List<Blog> findNewestBlog(Integer userId);
+    List<BlogAndTypeAndTagGroup> searchUserBlog(@Param("userId") Integer userId, @Param("blogType") String blogType, @Param("searchValue") String searchValue);
 
     /**
      * 通过用户id和博客标题查询博客

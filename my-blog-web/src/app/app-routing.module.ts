@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'blog/:nickName',
     loadChildren: () => import('./layout/angel/angel.module').then(mod => mod.AngelModule)
   },
+  {
+    path: 'article',
+    loadChildren: () => import('./layout/article/article.module').then(mod => mod.ArticleModule)
+  },
   {path: '', redirectTo: 'user', pathMatch: 'full'}
 ];
 
