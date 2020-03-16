@@ -7,6 +7,7 @@ import {BlogTypeAccount} from "../../../model/blog-type-account";
 import {PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BlogAndTypeAndTagGroup} from "../../../entity/group/BlogAndTypeAndTagGroup";
+import {BlogType} from "../../../model/blog-type";
 
 @Component({
   selector: 'app-index-content',
@@ -130,6 +131,16 @@ export class IndexContentComponent implements OnInit {
       queryParams: queryParams,
       relativeTo: this.route
     });
+  }
+
+  /**
+   * 点击博客分类
+   * @param blogType 博客分类信息
+   */
+  blogTypeClick(blogType: BlogType) {
+    this.type = blogType.typeName;
+    this.pageIndex = 1;
+    this.routerJump();
   }
 
 
