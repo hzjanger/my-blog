@@ -1,5 +1,8 @@
 package com.hzj.myblog.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.hzj.myblog.entity.PageResult;
 import com.hzj.myblog.entity.ReturnResponse;
 import com.hzj.myblog.model.Tag;
 import com.hzj.myblog.service.TagService;
@@ -59,8 +62,11 @@ public class TagController {
      */
     @GetMapping("/findAllTag")
     @ApiOperation(value = "查找所有的标签", notes = "查找所有的标签")
-    public ReturnResponse<List<Tag>> findAllTag() {
-        return new ReturnResponse<>(1, "查找成功", tagService.findAllTag());
+    public ReturnResponse<PageResult<Tag>> findAllTag(@RequestParam(value = "pageIndex", defaultValue = "1") Integer pageIndex, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        PageHelper.startPage(pageIndex, pageSize);
+        PageInfo<Tag> pageInfo = new PageInfo<>(tagService.findAllTag());
+        PageResult<Tag> pageResult = new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
+        return new ReturnResponse<>(1, "查找成功", pageResult);
 
     }
 

@@ -6,6 +6,7 @@ import {ReturnModel} from "../../entity/return-model";
 import {HttpClient} from "@angular/common/http";
 import {ProxyPrefix} from "../../entity/proxyPrefix";
 import {TagBlogTypeGroup} from "../../entity/group/TagBlogTypeGroup";
+import {PageResult} from "../../entity/page-result";
 
 @Injectable({
   providedIn: "root"
@@ -33,10 +34,12 @@ export class TagImplService extends TagService {
   /**
    * 查找所有的标签
    *
+   * @param pageIndex 页数
+   * @param pageSize 页条数
    * @return 标签对象列表
    */
-  findAllTag(): Observable<ReturnModel<TagBlogTypeGroup[]>> {
-    return this.http.get<ReturnModel<TagBlogTypeGroup[]>>(`${this.url}/findAllTag`);
+  findAllTag(pageIndex: number, pageSize: number): Observable<ReturnModel<PageResult<TagBlogTypeGroup>>> {
+    return this.http.get<ReturnModel<PageResult<TagBlogTypeGroup>>>(`${this.url}/findAllTag?pageIndex=${pageIndex}&pageSize=${pageSize}`);
   }
 
   /**

@@ -2,6 +2,7 @@ import {Tag} from "../../model/tag";
 import {Observable} from "rxjs";
 import {ReturnModel} from "../../entity/return-model";
 import {TagBlogTypeGroup} from "../../entity/group/TagBlogTypeGroup";
+import {PageResult} from "../../entity/page-result";
 
 export abstract class TagService {
   /**
@@ -21,9 +22,11 @@ export abstract class TagService {
   /**
    * 查找所有的标签
    *
+   * @param pageIndex 页数
+   * @param pageSize 页条数
    * @return 标签对象列表
    */
-  abstract findAllTag(): Observable<ReturnModel<TagBlogTypeGroup[]>>;
+  abstract findAllTag(pageIndex: number, pageSize: number): Observable<ReturnModel<PageResult<TagBlogTypeGroup>>>;
 
   /**
    * 查找博客分类所对应的标签

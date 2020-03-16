@@ -9,6 +9,9 @@ import {
 } from "./edit-blog-label-dialog/edit-blog-label-dialog.component";
 import {Tag} from "../../../model/tag";
 import {SnackBarService} from "../../../service/snackBar.service";
+import {PageResult} from "../../../entity/page-result";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
     selector: 'app-blog-label',
@@ -25,23 +28,48 @@ export class BlogLabelComponent implements OnInit {
         operation: '操作'
     };
 
-    blogTag: TagBlogTypeGroup[];
+    /**
+     * 页数
+     */
+    pageIndex: number = 1;
 
-    constructor(private tagService: TagService, private dialog: MatDialog, private snackbarService: SnackBarService) {
+    /**
+     * 页条数
+     */
+    pageSize: number = 10;
+
+    /**
+     * 分页结果
+     */
+    pageResult: PageResult<TagBlogTypeGroup>;
+
+    constructor(private tagService: TagService, private dialog: MatDialog, private snackbarService: SnackBarService,
+                private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
-        this.findAllTag();
+        this.route.queryParamMap.subscribe((params: Params) => {
+            this.pageIndex = params.get('pageIndex') || 1;
+            this.pageSize = params.get('pageSize') || 10;
+            this.findAllTag();
+        });
     }
 
+    /**
+     * 分页查找标签信息
+     */
     findAllTag() {
-        this.tagService.findAllTag().subscribe(data => {
+        this.tagService.findAllTag(this.pageIndex, this.pageSize).subscribe(data => {
             if (data.code === CodeEnum.SUCCESS) {
-                this.blogTag = data.data;
+                this.pageResult = data.data;
             }
         })
     }
 
+    /**
+     * 编辑博客标签
+     * @param tagBlogTypeGroup 博客标签
+     */
     edit(tagBlogTypeGroup: TagBlogTypeGroup) {
         let tag: Tag = {
             tagName: tagBlogTypeGroup.tagName,
@@ -101,4 +129,16 @@ export class BlogLabelComponent implements OnInit {
         })
     }
 
+    /**
+     * 分页改变事件
+     */
+    page(pageEvent: PageEvent) {
+        this.router.navigate(['./'], {
+            queryParams: {
+                pageIndex: pageEvent.pageIndex + 1,
+                pageSize: pageEvent.pageSize
+            },
+            relativeTo: this.route
+        })
+    }
 }
