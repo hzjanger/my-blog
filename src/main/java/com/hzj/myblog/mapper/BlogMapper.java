@@ -60,7 +60,7 @@ public interface BlogMapper {
      * @param title  博客标题
      * @return 查询到的博客信息
      */
-    @Select("SELECT id, title, userId FROM blog WHERE title = #{title} AND userId = #{userId}")
+    @Select("SELECT id, title, userId, blogTypeId, tagId FROM blog WHERE title = #{title} AND userId = #{userId}")
     Blog findBlogByUserIdAndTitle(@Param("userId") Integer userId, @Param("title") String title);
 
     /**

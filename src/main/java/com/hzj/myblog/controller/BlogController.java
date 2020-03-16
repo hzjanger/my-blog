@@ -76,10 +76,10 @@ public class BlogController {
             @ApiImplicitParam(name = "searchValue", value = "博客搜索内容", paramType = "query", dataType = "String")
     })
     public ReturnResponse<PageResult<BlogAndTypeAndTagGroup>> searchUserBlog(@PathVariable("userId") Integer userId,
-                                                           @RequestParam(value = "pageIndex", defaultValue = "1") Integer current,
-                                                           @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
-                                                           @RequestParam(value = "blogType", required = false) String blogType,
-                                                           @RequestParam(value = "searchValue", required = false) String searchValue) {
+                                                                             @RequestParam(value = "pageIndex", defaultValue = "1") Integer current,
+                                                                             @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
+                                                                             @RequestParam(value = "blogType", required = false) String blogType,
+                                                                             @RequestParam(value = "searchValue", required = false) String searchValue) {
         PageHelper.startPage(current, pageSize);
         PageInfo<BlogAndTypeAndTagGroup> pageInfo = new PageInfo<>(blogService.searchUserBlog(userId, blogType, searchValue));
         PageResult<BlogAndTypeAndTagGroup> pageResult = new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
@@ -93,5 +93,10 @@ public class BlogController {
         return new ReturnResponse<>(1, "查找成功", blogService.findBlogById(id));
     }
 
-
+    @PutMapping("/updateBlog")
+    @ApiOperation(value = "更新博客的信息")
+    public ReturnResponse<Blog> updateBlog(@RequestBody Blog blog) {
+        blogService.updateBlog(blog);
+        return new ReturnResponse<>(1, "更新成功");
+    }
 }

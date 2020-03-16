@@ -74,4 +74,12 @@ export class BlogImplService extends BlogService {
   findBlogByUserIdAndTitle(userId: number, title: string): Observable<ReturnModel<Blog>> {
     return this.http.get<ReturnModel<Blog>>(`${this.url}/findBlogByUserIdAndTitle/${userId}/${title}`);
   }
+
+  /**
+   * 更新博客的信息
+   * @param blog 博客信息
+   */
+  updateBlog(blog: Blog): Observable<ReturnModel<Blog>> {
+    return this.http.put<ReturnModel<Blog>>(`${this.url}/updateBlog`, blog);
+  }
 }

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-export interface DialogLayoutInputModule {
+export class DialogLayoutInputModule {
   /**
    * 弹窗标题名称
    */

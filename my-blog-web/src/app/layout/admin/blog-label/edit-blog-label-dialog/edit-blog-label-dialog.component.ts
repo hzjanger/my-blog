@@ -7,7 +7,7 @@ import {BlogType} from "../../../../model/blog-type";
 import {CodeEnum} from "../../../../entity/code-enum";
 import {Tag} from "../../../../model/tag";
 
-export interface EditBlogLabelDialogInputModule extends DialogLayoutInputModule {
+export class EditBlogLabelDialogInputModule extends DialogLayoutInputModule {
   tag?: Tag;
 }
 

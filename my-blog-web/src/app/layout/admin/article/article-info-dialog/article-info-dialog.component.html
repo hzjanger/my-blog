@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup">
-  <dialog-layout [dialogTitle]="dialogTitle" (cancelPress)="dialogRef.close()" (okPress)="sure()">
+  <dialog-layout [dialogTitle]="dialogInputData.dialogTitle" (cancelPress)="dialogRef.close()" (okPress)="sure()">
     <div class="form-field-box">
       <mat-form-field>
         <mat-select formControlName="blogTypeId" placeholder="文章类别"

@@ -2,13 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {EditorConfig} from "../../../config/EditorConfig";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
-import {ArticleInfoDialogComponent} from "./article-info-dialog/article-info-dialog.component";
+import {
+  ArticleInfoDialogComponent,
+  ArticleInfoDialogInputData
+} from "./article-info-dialog/article-info-dialog.component";
 import {BlogService} from "../../../@core/interface/blog.service";
 import {Blog} from "../../../model/blog";
 import {StorageMessage} from "../../../utils/storage-message";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SnackBarService} from "../../../service/snackBar.service";
 import {CodeEnum} from "../../../entity/code-enum";
+import {ReturnModel} from "../../../entity/return-model";
 
 @Component({
   selector: 'app-article',
@@ -49,8 +53,6 @@ export class ArticleComponent implements OnInit {
       this.blogId = +params.get('blogId');
       if (this.blogId) {
         this.findBlogById();
-      } else {
-        console.log('新增');
       }
     })
   }
@@ -59,7 +61,7 @@ export class ArticleComponent implements OnInit {
    * 通过博客的id查找博客的信息
    */
   findBlogById() {
-    this.blogService.findBlogById(this.blogId, false).subscribe(data => {
+    this.blogService.findBlogById(this.blogId, false).subscribe((data: ReturnModel<Blog>) => {
       if (data.code === CodeEnum.SUCCESS) {
         this.formGroup.patchValue(data.data);
       }
@@ -73,19 +75,21 @@ export class ArticleComponent implements OnInit {
     if (this.formGroup.invalid) {
       return;
     }
-
     const userId = JSON.parse(StorageMessage.getUserInfo()).userId;
     this.blogService.findBlogByUserIdAndTitle(userId, this.title.value).subscribe(data => {
+      // 查找到了
       if (data.code === 1) {
         if (!this.blogId) {
+          // 新增文章的标题和其他的冲突
           this.snackBarService.failure('博客标题名称存在');
         } else if (data.data.id !== this.blogId && data.data.title === this.title.value) {
+          // 更新文章的标题与其他的冲突
           this.snackBarService.failure('博客的标题和你的其他博客的标题冲突');
         } else {
-          this.saveBlog();
+          this.openDialog(data.data);
         }
       } else if (data.code === 0) {
-        this.saveBlog();
+        this.openDialog(data.data);
       }
     })
   }
@@ -93,28 +97,57 @@ export class ArticleComponent implements OnInit {
   /**
    * 点击保存博客
    */
-  saveBlog() {
+  openDialog(blog: Blog) {
+    const dialogInputData: ArticleInfoDialogInputData = {dialogTitle: '添加博客'};
+    if (this.blogId) {
+      dialogInputData.dialogTitle = '更新博客';
+      dialogInputData.blog = blog;
+    }
     const dialogRef = this.dialog.open(ArticleInfoDialogComponent, {
       autoFocus: false,
       width: '520px',
-      data: {
-        dialogTitle: '添加博客'
-      }
+      data: dialogInputData
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const userId = JSON.parse(StorageMessage.getUserInfo()).userId;
-        const blog: Blog = {...result, ...this.formGroup.value, userId};
-        this.blogService.addBlog(blog).subscribe(data => {
-          console.log(data);
-          if (data.code === CodeEnum.SUCCESS) {
-            this.snackBarService.success(data.message);
-            const nickName = JSON.parse(StorageMessage.getUserInfo()).nickName;
-            this.router.navigate([`/index/article/details`, nickName, data.data.id]);
-          }
-        });
+        if (this.blogId) {
+          const blog: Blog = {...result, ...this.formGroup.value, userId, id: this.blogId};
+          this.updateBlog(blog);
+        } else {
+          const blog: Blog = {...result, ...this.formGroup.value, userId};
+          this.saveBlog(blog);
+        }
       }
     })
+  }
+
+  /**
+   * 保存博客
+   * @param blog
+   */
+  saveBlog(blog: Blog) {
+    this.blogService.addBlog(blog).subscribe(data => {
+      if (data.code === CodeEnum.SUCCESS) {
+        this.snackBarService.success(data.message);
+        const nickName = JSON.parse(StorageMessage.getUserInfo()).nickName;
+        this.router.navigate([`/article/details`, nickName, data.data.id]);
+      }
+    });
+  }
+
+  /**
+   * 更新博客
+   * @param blog 博客
+   */
+  updateBlog(blog: Blog) {
+    this.blogService.updateBlog(blog).subscribe(data => {
+      if (data.code === CodeEnum.SUCCESS) {
+        this.snackBarService.success(data.message);
+        const nickName = JSON.parse(StorageMessage.getUserInfo()).nickName;
+        this.router.navigate([`/article/details`, nickName, this.blogId]);
+      }
+    });
   }
 
   get title(): FormControl {

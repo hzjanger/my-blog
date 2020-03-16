@@ -40,4 +40,10 @@ export abstract class BlogService {
    * @param isEncode 是否转义
    */
   abstract findBlogById(id: number, isEncode?: boolean): Observable<ReturnModel<Blog>>;
+
+  /**
+   * 更新博客的信息
+   * @param blog 博客信息
+   */
+  abstract updateBlog(blog: Blog): Observable<ReturnModel<Blog>>;
 }

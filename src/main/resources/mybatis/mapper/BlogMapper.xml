@@ -60,8 +60,8 @@
 
     <!--    更新博客信息-->
     <update id="updateBlog" parameterType="com.hzj.myblog.model.Blog">
-        UPDATE blog SET title = #{title}, markdown = #{markdown}, userId = #{userId}, blogTypeId = #{blogTypeId}, tagId = #{tagId}, updateDate = #{updateDate}
-        WHERE id = #{id}
+        UPDATE blog SET title = #{title}, markdown = #{markdown}, blogTypeId = #{blogTypeId}, tagId = #{tagId}, updateDate = #{updateDate}
+        WHERE id = #{id} AND userId = #{userId}
     </update>
 
 </mapper>

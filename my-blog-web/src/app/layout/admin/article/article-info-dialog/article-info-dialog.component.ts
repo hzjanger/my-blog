@@ -6,6 +6,18 @@ import {BlogType} from "../../../../model/blog-type";
 import {TagService} from "../../../../@core/interface/tag-service";
 import {MatSelectChange} from "@angular/material/select/typings/select";
 import {Tag} from "../../../../model/tag";
+import {
+  DialogLayoutInputModule
+} from "../../../../@theme/component/dialog-layout/dialog.layout.component";
+import {Blog} from "../../../../model/blog";
+import {CodeEnum} from "../../../../entity/code-enum";
+
+export class ArticleInfoDialogInputData extends DialogLayoutInputModule {
+  /**
+   * 博客的信息
+   */
+  blog?: Blog;
+}
 
 @Component({
   selector: 'app-article-info-dialog',
@@ -15,9 +27,9 @@ import {Tag} from "../../../../model/tag";
 export class ArticleInfoDialogComponent implements OnInit {
 
   /**
-   * 弹窗的标题
+   * 从外部传给dialog的数据
    */
-  dialogTitle: string;
+  dialogInputData: ArticleInfoDialogInputData;
 
   /**
    * 表单控件
@@ -40,12 +52,18 @@ export class ArticleInfoDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dialogTitle = this.data.dialogTitle;
+    this.dialogInputData = JSON.parse(JSON.stringify(this.data));
     this.formGroup = this.fb.group({
       blogTypeId: [null],
       tagId: [null]
     });
     this.findAllBlogType();
+    console.log(this.dialogInputData.blog);
+    if (this.dialogInputData.blog) {
+      this.findTagByBlogTypeId(this.dialogInputData.blog.blogTypeId);
+      this.formGroup.patchValue(this.dialogInputData.blog);
+
+    }
   }
 
   /**
@@ -53,7 +71,6 @@ export class ArticleInfoDialogComponent implements OnInit {
    */
   findAllBlogType() {
     this.blogTypeService.findAllBlogType().subscribe(data => {
-      console.log(data);
       if (data && data.code === 1) {
         this.blogType = data.data;
       }
@@ -65,9 +82,16 @@ export class ArticleInfoDialogComponent implements OnInit {
    * @param selectChange 改变的值
    */
   selectionChange(selectChange: MatSelectChange) {
-    console.log(selectChange);
-    this.tagService.findTagByBlogTypeId(selectChange.value).subscribe(data => {
-      if (data.code === 1) {
+    this.findTagByBlogTypeId(selectChange.value);
+  }
+
+  /**
+   * 通过博客分类id查找标签信息
+   * @param tagId
+   */
+  findTagByBlogTypeId(tagId: number) {
+    this.tagService.findTagByBlogTypeId(tagId).subscribe(data => {
+      if (data.code === CodeEnum.SUCCESS) {
         this.tagList = data.data;
       }
     })
