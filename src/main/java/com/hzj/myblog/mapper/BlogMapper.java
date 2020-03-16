@@ -47,11 +47,12 @@ public interface BlogMapper {
      * 搜索用户的博客列表
      *
      * @param userId      用户id
-     * @param blogType    博客分类
+     * @param typeName    博客分类
      * @param searchValue 博客内容
+     * @param tagName     标签名称
      * @return 查找的博客列表
      */
-    List<BlogAndTypeAndTagGroup> searchUserBlog(@Param("userId") Integer userId, @Param("blogType") String blogType, @Param("searchValue") String searchValue);
+    List<BlogAndTypeAndTagGroup> searchUserBlog(@Param("userId") Integer userId, @Param("typeName") String typeName, @Param("searchValue") String searchValue, @Param("tagName") String tagName);
 
     /**
      * 通过用户id和博客标题查询博客

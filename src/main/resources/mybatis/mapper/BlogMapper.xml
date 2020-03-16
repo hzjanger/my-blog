@@ -53,8 +53,11 @@
         WHERE c.userId = #{userId}
         ORDER BY updateDate DESC) as e
         <where>
-            <if test="blogType != null">
-                typeName = #{blogType}
+            <if test="typeName != null">
+                typeName = #{typeName}
+            </if>
+            <if test="tagName != null">
+                AND tagName = #{tagName}
             </if>
             <if test="searchValue != null">
                 AND title LIKE CONCAT('%',#{searchValue}, '%')

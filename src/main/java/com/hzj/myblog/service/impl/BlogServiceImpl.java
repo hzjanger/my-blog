@@ -45,20 +45,23 @@ public class BlogServiceImpl implements BlogService {
     /**
      * 搜索用户的博客列表
      *
-     * @param userId      用户id
-     * @param blogType    博客分类
-     * @param searchValue 博客内容
+     * @param userId   用户id
+     * @param typeName 博客分类
+     * @param search   博客内容
      * @return 查找的博客列表
      */
     @Override
-    public List<BlogAndTypeAndTagGroup> searchUserBlog(Integer userId, String blogType, String searchValue) {
-        if ("null".equals(blogType)) {
-            blogType = null;
+    public List<BlogAndTypeAndTagGroup> searchUserBlog(Integer userId, String typeName, String search, String tagName) {
+        if ("null".equals(typeName)) {
+            typeName = null;
         }
-        if ("null".equals(searchValue)) {
-            searchValue = null;
+        if ("null".equals(search)) {
+            search = null;
         }
-        return blogMapper.searchUserBlog(userId, blogType, searchValue);
+        if ("null".equals(tagName)) {
+            tagName = null;
+        }
+        return blogMapper.searchUserBlog(userId, typeName, search, tagName);
     }
 
     @Override

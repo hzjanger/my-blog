@@ -45,13 +45,13 @@ public interface BlogService {
     /**
      * 搜索用户的博客列表
      *
-     * @param userId 用户id
-     * @param  blogType 博客分类
-     * @param searchValue 博客内容
+     * @param userId   用户id
+     * @param typeName 博客分类
+     * @param search   博客内容
+     * @param tagName  博客标签
      * @return 查找的博客列表
-     *
      */
-    List<BlogAndTypeAndTagGroup> searchUserBlog(Integer userId, String blogType, String searchValue);
+    List<BlogAndTypeAndTagGroup> searchUserBlog(Integer userId, String typeName, String search, String tagName);
 
     /**
      * 通过用户id和博客标题查询博客

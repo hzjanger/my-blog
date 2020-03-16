@@ -30,7 +30,7 @@
                   <mat-icon svgIcon="mkdir"></mat-icon>
                   <span>{{item.blogType.typeName}}</span>
                 </a>
-                <a matRipple class="tag">
+                <a matRipple class="tag" (click)="tagClick(item.tag)">
                   <mat-icon svgIcon="tag"></mat-icon>
                   <span>{{item.tag.tagName}}</span>
                 </a>

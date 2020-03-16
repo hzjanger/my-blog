@@ -18,14 +18,15 @@ export abstract class BlogService {
   abstract deleteBlog(id: number): Observable<ReturnModel<any>>;
 
   /**
-   * 分页查询用户最新的文章
+   * 博客搜索
    * @param userId 用户id
-   * @param current 页数
+   * @param pageIndex 页数
    * @param pageSize 页条数
+   * @param type 博客分类
+   * @param search 搜索内容
+   * @param tagName 标签名称
    */
-  abstract findNewestBlog(userId: number, current?: number, pageSize?: number): Observable<ReturnModel<PageResult<Blog>>>;
-
-  abstract searchUserBlog(userId: number, current: number, pageSize: number, type?: string, search?: string): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>;
+  abstract searchUserBlog(userId: number, pageIndex: number, pageSize: number, type?: string, search?: string, tagName?: string): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>;
 
   /**
    * 通过用户的id和博客的标题查询博客

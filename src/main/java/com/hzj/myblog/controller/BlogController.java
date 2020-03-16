@@ -73,15 +73,17 @@ public class BlogController {
             @ApiImplicitParam(name = "pageIndex", value = "页数", paramType = "query", dataType = "Long", example = "1"),
             @ApiImplicitParam(name = "pageSize", value = "页条数", paramType = "query", dataType = "Long", example = "10"),
             @ApiImplicitParam(name = "blogType", value = "博客分类", paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "searchValue", value = "博客搜索内容", paramType = "query", dataType = "String")
+            @ApiImplicitParam(name = "searchValue", value = "博客搜索内容", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "tagName", value = "博客标签", paramType = "query", dataType = "String")
     })
     public ReturnResponse<PageResult<BlogAndTypeAndTagGroup>> searchUserBlog(@PathVariable("userId") Integer userId,
                                                                              @RequestParam(value = "pageIndex", defaultValue = "1") Integer current,
                                                                              @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                                                              @RequestParam(value = "blogType", required = false) String blogType,
-                                                                             @RequestParam(value = "searchValue", required = false) String searchValue) {
+                                                                             @RequestParam(value = "searchValue", required = false) String searchValue,
+                                                                             @RequestParam(value = "tagName", required = false) String tagName) {
         PageHelper.startPage(current, pageSize);
-        PageInfo<BlogAndTypeAndTagGroup> pageInfo = new PageInfo<>(blogService.searchUserBlog(userId, blogType, searchValue));
+        PageInfo<BlogAndTypeAndTagGroup> pageInfo = new PageInfo<>(blogService.searchUserBlog(userId, blogType, searchValue, tagName));
         PageResult<BlogAndTypeAndTagGroup> pageResult = new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
         return new ReturnResponse<>(1, "查询成功", pageResult);
     }

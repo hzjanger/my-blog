@@ -8,6 +8,7 @@ import {PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BlogAndTypeAndTagGroup} from "../../../entity/group/BlogAndTypeAndTagGroup";
 import {BlogType} from "../../../model/blog-type";
+import {Tag} from "../../../model/tag";
 
 @Component({
   selector: 'app-index-content',
@@ -49,6 +50,11 @@ export class IndexContentComponent implements OnInit {
   type: string = null;
 
   /**
+   * 标签名称
+   */
+  tagName: string = null;
+
+  /**
    * 搜索内容
    */
   search: string = null;
@@ -66,6 +72,7 @@ export class IndexContentComponent implements OnInit {
       this.pageSize = +params.get('pageSize') || 10;
       this.type = params.get('type') || null;
       this.search = params.get('search') || null;
+      this.tagName = params.get('tagName') || null;
       this.findNewestBlog();
     });
     this.findUserBlogTypeAccount();
@@ -75,7 +82,7 @@ export class IndexContentComponent implements OnInit {
    * 查找用户最新的博客
    */
   findNewestBlog() {
-    this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize, this.type, this.search).subscribe(data => {
+    this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize, this.type, this.search, this.tagName).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.pageResult = data.data;
       }
@@ -127,6 +134,10 @@ export class IndexContentComponent implements OnInit {
     if (this.search !== null) {
       queryParams.search = this.search;
     }
+
+    if (this.tagName !== null) {
+      queryParams.tagName = this.tagName;
+    }
     this.router.navigate(['./'], {
       queryParams: queryParams,
       relativeTo: this.route
@@ -139,6 +150,16 @@ export class IndexContentComponent implements OnInit {
    */
   blogTypeClick(blogType: BlogType) {
     this.type = blogType.typeName;
+    this.pageIndex = 1;
+    this.routerJump();
+  }
+
+  /**
+   * 点击博客标签
+   * @param tag 标签信息
+   */
+  tagClick(tag: Tag) {
+    this.tagName = tag.tagName;
     this.pageIndex = 1;
     this.routerJump();
   }

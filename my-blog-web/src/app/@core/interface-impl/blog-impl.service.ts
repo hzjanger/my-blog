@@ -36,25 +36,16 @@ export class BlogImplService extends BlogService {
   }
 
   /**
-   * 分页查询用户最新的文章
-   * @param userId 用户id
-   * @param pageIndex 页数
-   * @param pageSize 页条数
-   */
-  findNewestBlog(userId: number, pageIndex: number = 1, pageSize: number = 10): Observable<ReturnModel<PageResult<Blog>>> {
-    return this.http.get<ReturnModel<PageResult<Blog>>>(`${this.url}/searchUserBlog/${userId}?pageIndex=${pageIndex}&pageSize=${pageSize}`);
-  }
-
-  /**
    * 用户博客搜索
    * @param userId 用户id
    * @param pageIndex 页数
    * @param pageSize 页条数
    * @param type 博客分类
    * @param search 搜索内容
+   * @param tagName 标签名称
    */
-  searchUserBlog(userId: number, pageIndex: number = 1, pageSize: number = 10, type: string = null, search: string = null): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>> {
-    return this.http.get<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>(`${this.url}/searchUserBlog/${userId}?pageIndex=${pageIndex}&pageSize=${pageSize}&blogType=${type}&searchValue=${search}`);
+  searchUserBlog(userId: number, pageIndex: number = 1, pageSize: number = 10, type: string = null, search: string = null, tagName: string = null): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>> {
+    return this.http.get<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>(`${this.url}/searchUserBlog/${userId}?pageIndex=${pageIndex}&pageSize=${pageSize}&blogType=${type}&searchValue=${search}&tagName=${tagName}`);
   }
 
   /**
