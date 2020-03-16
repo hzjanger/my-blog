@@ -1,22 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DialogLayoutInputModule} from "../../../../@theme/component/dialog-layout/dialog.layout.component";
 
-export class EditBlogTypeDialogInputModule {
-  /**
-   * 弹窗的标题
-   */
-  title: string;
+export class EditBlogTypeDialogInputModule extends DialogLayoutInputModule {
   /**
    * 博客分类名称
    */
-  typeName: string;
-
-
-  constructor(title: string, typeName: string) {
-    this.title = title;
-    this.typeName = typeName;
-  }
+  typeName?: string;
 }
 
 @Component({

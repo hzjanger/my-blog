@@ -19,10 +19,10 @@ export class BlogTypeImplService extends BlogTypeService {
 
   /**
    * 新增博客分类
-   * @param blogType 博客分类
+   * @param typeName 博客分类
    */
-  addBlogType(blogType: BlogType): Observable<ReturnModel<any>> {
-    return this.http.post<ReturnModel<any>>(`${this.url}/addBlogType`, blogType);
+  addBlogType(typeName: string): Observable<ReturnModel<any>> {
+    return this.http.post<ReturnModel<any>>(`${this.url}/addBlogType`, {typeName});
   }
 
   /**

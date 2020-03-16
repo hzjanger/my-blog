@@ -1,5 +1,5 @@
 <form [formGroup]="formGroup" (ngSubmit)="okPress()">
-  <dialog-layout [dialogTitle]="dialogData.title" (okPress)="okPress()" (cancelPress)="cancelPress()">
+  <dialog-layout [dialogTitle]="dialogData.dialogTitle" (okPress)="okPress()" (cancelPress)="cancelPress()">
     <mat-form-field>
       <input matInput placeholder="输入博客分类" formControlName="typeName">
     </mat-form-field>

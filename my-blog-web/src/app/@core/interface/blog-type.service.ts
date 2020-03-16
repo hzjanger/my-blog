@@ -6,9 +6,9 @@ export abstract class BlogTypeService {
 
   /**
    * 新增博客分类
-   * @param blogType 博客分类
+   * @param typeName 博客分类
    */
-  abstract addBlogType(blogType: BlogType): Observable<ReturnModel<any>>;
+  abstract addBlogType(typeName: string): Observable<ReturnModel<any>>;
 
   /**
    * 删除博客分类
