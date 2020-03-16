@@ -18,7 +18,13 @@ export class TagImplService extends TagService {
     super();
   }
 
-  addTag(tag: Tag) {
+  /**
+   * 添加标签
+   *
+   * @param tag 标签信息
+   */
+  addTag(tag: Tag): Observable<ReturnModel<any>> {
+    return this.http.post<ReturnModel<any>>(`${this.url}/addTag`, tag);
   }
 
   deleteTag(id: number) {

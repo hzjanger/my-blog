@@ -9,7 +9,7 @@ export abstract class TagService {
    *
    * @param tag 标签信息
    */
-  abstract addTag(tag: Tag);
+  abstract addTag(tag: Tag): Observable<ReturnModel<any>>;
 
   /**
    * 删除标签

@@ -1,4 +1,4 @@
-<app-admin-sub-content></app-admin-sub-content>
+<app-admin-sub-content (createPress)="create()"></app-admin-sub-content>
 <div class="p-2">
   <table *ngIf="blogTag" mat-table [dataSource]="blogTag" class="mat-elevation-z8">
 
