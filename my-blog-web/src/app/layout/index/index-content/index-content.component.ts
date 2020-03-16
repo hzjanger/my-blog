@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from "../../../@core/interface/blog.service";
-import {StorageMessage} from "../../../utils/storage-message";
 import {PageResult} from "../../../entity/page-result";
 import {CodeEnum} from "../../../entity/code-enum";
 import {BlogTypeAccountService} from "../../../@core/interface/blog-type-account.service";
@@ -59,8 +58,7 @@ export class IndexContentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nickName = StorageMessage.getUserInfo() && JSON.parse(StorageMessage.getUserInfo()).nickName;
-    // this.userId = StorageMessage.getUserInfo() && JSON.parse(StorageMessage.getUserInfo()).userId;
+    this.nickName = this.route.snapshot.paramMap.get('nickName');
     this.userId = +this.route.snapshot.paramMap.get('id');
     this.route.queryParamMap.subscribe((params: Params) => {
       this.pageIndex = +params.get('pageIndex') || 1;
@@ -76,7 +74,6 @@ export class IndexContentComponent implements OnInit {
    * 查找用户最新的博客
    */
   findNewestBlog() {
-    console.log(this.type);
     this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize, this.type, this.search).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.pageResult = data.data;

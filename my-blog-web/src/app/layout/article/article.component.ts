@@ -41,7 +41,6 @@ export class ArticleComponent implements OnInit {
    */
   findBlogById() {
     this.blogService.findBlogById(this.blogId).subscribe(data => {
-      console.log(data);
       if (data.code === CodeEnum.SUCCESS) {
         this.blog = data.data;
       }
