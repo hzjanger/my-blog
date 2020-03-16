@@ -1,28 +1,28 @@
 <div class="container">
   <ng-template [ngIf]="pageResult">
-    <article *ngFor="let article of pageResult.rows">
+    <article *ngFor="let item of pageResult.rows">
       <h3 class="article-title">
-        <a [routerLink]="['/admin/article/edit', article.id]">{{article.title}}</a>
+        <a [routerLink]="['/admin/article/edit', item.blog.id]">{{item.blog.title}}</a>
       </h3>
       <div class="article-action">
         <div class="action-left">
           <a>
             <mat-icon>alarm</mat-icon>
-            <span>{{article.updateDate | date : 'yyyy-MM-dd HH:ss:mm'}}</span>
+            <span>{{item.blog.updateDate | date : 'yyyy-MM-dd HH:ss:mm'}}</span>
           </a>
           <a>
             <mat-icon>label</mat-icon>
-            类别
+            {{item.blogType.typeName}}
           </a>
           <a>
             <mat-icon>label</mat-icon>
-            标签
+            {{item.tag.tagName}}
           </a>
         </div>
         <div class="action-right">
-          <a [routerLink]="['/admin/article/edit', article.id]">编辑</a>
-          <a [routerLink]="['/blog', nickName, 'article', userId]">查看</a>
-          <a (click)="deleteBlog(article)">删除</a>
+          <a [routerLink]="['/admin/article/edit', item.blog.id]">编辑</a>
+          <a [routerLink]="['/article/details', nickName, item.blog.id]">查看</a>
+          <a (click)="deleteBlog(item.blog)">删除</a>
         </div>
       </div>
     </article>

@@ -12,6 +12,7 @@ import {
 import {SnackBarService} from "../../../../service/snackBar.service";
 import {PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import {BlogAndTypeAndTagGroup} from "../../../../entity/group/BlogAndTypeAndTagGroup";
 
 @Component({
     selector: 'app-my-article',
@@ -22,9 +23,9 @@ export class MyArticleComponent implements OnInit {
 
     pageIndex: number = 1;
 
-    pageSize: number = 20;
+    pageSize: number = 10;
 
-    pageResult: PageResult<Blog>;
+    pageResult: PageResult<BlogAndTypeAndTagGroup>;
 
     constructor(private blogService: BlogService, private dialog: MatDialog, private snackbarService: SnackBarService,
                 private router: Router, private route: ActivatedRoute) {
@@ -41,7 +42,7 @@ export class MyArticleComponent implements OnInit {
     }
 
     getMyBlogList() {
-        this.blogService.findNewestBlog(this.userId, this.pageIndex, this.pageSize).subscribe(data => {
+        this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize).subscribe(data => {
             if (data.code === CodeEnum.SUCCESS) {
                 this.pageResult = data.data;
             }
