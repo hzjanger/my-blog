@@ -15,6 +15,9 @@ import {TagService} from "./interface/tag-service";
 import {TagImplService} from "./interface-impl/tag-impl.service";
 import {SidenavService} from "./interface/sidenav.service";
 import {SidenavImplService} from "./interface-impl/sidenav-impl.service";
+import {MatIconRegistry} from "@angular/material/icon";
+import {DomSanitizer} from "@angular/platform-browser";
+import {loadSvgResource} from "../utils/svg.utils";
 
 const SERVICE = [
   {provide: AuthorService, useClass: AuthorImplService},
@@ -34,8 +37,9 @@ const SERVICE = [
   ]
 })
 export class CoreModule {
-  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule, private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');
+    loadSvgResource(matIconRegistry, domSanitizer);
   }
 
   static forRoot(): ModuleWithProviders {

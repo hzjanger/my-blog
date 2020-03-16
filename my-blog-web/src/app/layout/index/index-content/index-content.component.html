@@ -7,27 +7,32 @@
       <div class="left-container">
         <ng-template [ngIf]="pageResult">
           <div class="article" *ngFor="let item of pageResult.rows">
-            <a class="img-box">
-              <img alt="图片" src="https://tendcode.com/cdn/article/181223/docker.jpg">
+            <a class="img-box" [routerLink]="['/article/details', nickName, item.blog.id]">
+              <header matRipple>
+                <img alt="图片" [src]="item.blog.imageUrl">
+                <div class="action">
+                  <div class="action-card">
+                    <h3>{{item.blog.title}}</h3>
+                    <a>
+                      <mat-icon>alarm</mat-icon>
+                      <span>{{item.blog.updateDate | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    </a>
+                  </div>
+                </div>
+              </header>
             </a>
-            <div>
-              <h3 class="article-title">
-                <a [routerLink]="['/article/details', nickName, item.blog.id]">{{item.blog.title}}</a>
-              </h3>
-              <p>我的 Jenkins 是运行在容器中的（之前有文章已经分享过容器运行 Jenkins 的方式），所以很显然，容器能执行的任务非常有限，甚至可以说是基本没啥用。但是那都不是事儿，毕竟 Jenkins
-                一般来说也不是单机执行，而是会配置主从节多节点执行任务，不同的</p>
-              <div class="action">
-                <a>
-                  <mat-icon>alarm</mat-icon>
-                  <span>{{item.blog.updateDate | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+            <div class="card-bottom">
+              <div class="card-description">
+                {{item.blog.description}}<a [routerLink]="['/article/details', nickName, item.blog.id]" class="read-more">阅读更多>></a>
+              </div>
+              <div class="blog-label">
+                <a matRipple class="type">
+                  <mat-icon svgIcon="mkdir"></mat-icon>
+                  <span>{{item.blogType.typeName}}</span>
                 </a>
-                <a>
-                  <mat-icon>label</mat-icon>
-                  {{item.blogType.typeName}}
-                </a>
-                <a>
-                  <mat-icon>label</mat-icon>
-                  {{item.tag.tagName}}
+                <a matRipple class="tag">
+                  <mat-icon svgIcon="tag"></mat-icon>
+                  <span>{{item.tag.tagName}}</span>
                 </a>
               </div>
             </div>

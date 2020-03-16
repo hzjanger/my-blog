@@ -3,7 +3,7 @@ import {BlogTypeAccountService} from "../interface/blog-type-account.service";
 import {Observable} from "rxjs";
 import {ReturnModel} from "../../entity/return-model";
 import {BlogTypeAccount} from "../../model/blog-type-account";
-import {ProxyPrefix} from "../../entity/proxyPrefix";
+import {ProxyPrefix} from "../../entity/proxy-prefix";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({

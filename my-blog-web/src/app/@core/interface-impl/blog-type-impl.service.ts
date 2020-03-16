@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BlogTypeService} from "../interface/blog-type.service";
-import {ProxyPrefix} from "../../entity/proxyPrefix";
+import {ProxyPrefix} from "../../entity/proxy-prefix";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ReturnModel} from "../../entity/return-model";

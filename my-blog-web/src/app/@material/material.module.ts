@@ -14,6 +14,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatMenuModule} from "@angular/material/menu";
+import {MatRippleModule} from "@angular/material/core";
 
 const MAT_MODULE = [
   MatSidenavModule,
@@ -29,7 +30,8 @@ const MAT_MODULE = [
   MatSnackBarModule,
   MatTableModule,
   MatPaginatorModule,
-  MatMenuModule
+  MatMenuModule,
+  MatRippleModule
 ];
 
 @NgModule({

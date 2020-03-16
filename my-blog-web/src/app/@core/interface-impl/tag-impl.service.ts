@@ -4,7 +4,7 @@ import {Tag} from "../../model/tag";
 import {Observable} from "rxjs";
 import {ReturnModel} from "../../entity/return-model";
 import {HttpClient} from "@angular/common/http";
-import {ProxyPrefix} from "../../entity/proxyPrefix";
+import {ProxyPrefix} from "../../entity/proxy-prefix";
 import {TagBlogTypeGroup} from "../../entity/group/TagBlogTypeGroup";
 import {PageResult} from "../../entity/page-result";
 

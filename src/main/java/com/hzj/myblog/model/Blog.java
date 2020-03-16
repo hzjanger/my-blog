@@ -38,10 +38,20 @@ public class Blog {
      */
     private Date updateDate;
 
+    /**
+     * 描述信息
+     */
+    private String description;
+
+    /**
+     * 图片地址
+     */
+    private String imageUrl;
+
     public Blog() {
     }
 
-    public Blog(Integer id, String title, String markdown, Integer userId, Integer blogTypeId, Integer tagId, Date updateDate) {
+    public Blog(Integer id, String title, String markdown, Integer userId, Integer blogTypeId, Integer tagId, Date updateDate, String description, String imageUrl) {
         this.id = id;
         this.title = title;
         this.markdown = markdown;
@@ -49,6 +59,8 @@ public class Blog {
         this.blogTypeId = blogTypeId;
         this.tagId = tagId;
         this.updateDate = updateDate;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public Integer getId() {
@@ -107,6 +119,22 @@ public class Blog {
         this.updateDate = updateDate;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -117,6 +145,8 @@ public class Blog {
                 ", blogTypeId=" + blogTypeId +
                 ", tagId=" + tagId +
                 ", updateDate=" + updateDate +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

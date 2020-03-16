@@ -55,14 +55,14 @@ export class ArticleInfoDialogComponent implements OnInit {
     this.dialogInputData = JSON.parse(JSON.stringify(this.data));
     this.formGroup = this.fb.group({
       blogTypeId: [null],
-      tagId: [null]
+      tagId: [null],
+      description: [null],
+      imageUrl: [null]
     });
     this.findAllBlogType();
-    console.log(this.dialogInputData.blog);
     if (this.dialogInputData.blog) {
       this.findTagByBlogTypeId(this.dialogInputData.blog.blogTypeId);
       this.formGroup.patchValue(this.dialogInputData.blog);
-
     }
   }
 

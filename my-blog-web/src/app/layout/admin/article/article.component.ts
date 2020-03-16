@@ -13,6 +13,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SnackBarService} from "../../../service/snackBar.service";
 import {CodeEnum} from "../../../entity/code-enum";
 import {ReturnModel} from "../../../entity/return-model";
+import {Constant} from "../../../entity/constant";
 
 @Component({
   selector: 'app-article',
@@ -115,7 +116,12 @@ export class ArticleComponent implements OnInit {
           const blog: Blog = {...result, ...this.formGroup.value, userId, id: this.blogId};
           this.updateBlog(blog);
         } else {
-          const blog: Blog = {...result, ...this.formGroup.value, userId};
+          const num = Math.floor(Math.random() * 20);
+          const blog: Blog = {
+            ...result, ...this.formGroup.value,
+            userId,
+            imageUrl: `${Constant.blogImageUrlPrefix.replace(/num/, String(num))}`
+          };
           this.saveBlog(blog);
         }
       }

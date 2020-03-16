@@ -33,4 +33,13 @@ export class Blog {
    * 更新时间
    */
   updateDate: Date;
+
+  /**
+   * 描述信息
+   */
+  description: string;
+  /**
+   * 图片地址
+   */
+  imageUrl: string;
 }

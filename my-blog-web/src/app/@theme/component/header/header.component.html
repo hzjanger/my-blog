@@ -1,7 +1,7 @@
 <mat-toolbar class="mat-elevation-z3">
   <div class="header-left">
     <span class="title">
-    <a [routerLink]="['/blog', nickName, 'article', 6]">Angel</a>
+    <a *ngIf="userInfo" [routerLink]="['/blog', nickName, 'article', userInfo.userId]">Angel</a>
   </span>
     <form [formGroup]="formGroup" (ngSubmit)="search()">
       <input class="search-input" placeholder="输入搜索内容" formControlName="search">

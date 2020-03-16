@@ -12,6 +12,9 @@
           <mat-option *ngFor="let option of tagList" [value]="option.id">{{option.tagName}}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="文章描述" formControlName="description"></textarea>
+      </mat-form-field>
     </div>
   </dialog-layout>
 </form>
