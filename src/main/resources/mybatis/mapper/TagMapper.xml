@@ -34,6 +34,19 @@
         SELECT id, tagName, blogTypeId FROM tag WHERE blogTypeId = #{blogTypeId}
     </select>
 
+    <resultMap id="tagWordCloud" type="com.hzj.myblog.entity.chart.TagWordCloud">
+        <id property="tagId" column="id"/>
+        <result property="value" column="account"/>
+        <result property="name" column="tagName"/>
+    </resultMap>
+
+    <!--统计用户每个标签的数量-->
+    <select id="tagOfBlogAccount" resultMap="tagWordCloud">
+        SELECT id, tagName, COUNT(id) as account
+        FROM tag inner join (SELECT tagId FROM blog WHERE userId = #{userId}) as a on tag.id = a.tagId
+        group by id
+    </select>
+
     <!--    更新标签信息-->
     <update id="updateTag" parameterType="com.hzj.myblog.model.Tag">
         UPDATE tag SET tagName = #{tagName}, blogTypeId = #{blogTypeId} WHERE id = #{id}

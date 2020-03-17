@@ -23,7 +23,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(httpBasicAuthorizeHandler)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/user/login", "/user/register", "/user/sendEmail/*", "/user/verifyTicket/**")
-                .excludePathPatterns("/user/findUserByNickname/*", "/blog/searchUserBlog/*", "/blogTypeAccount/findBlogTypeAccount/*", "/blog/findBlogById/*")
+                .excludePathPatterns("/user/findUserByNickname/*", "/blog/searchUserBlog/*", "/blogTypeAccount/findBlogTypeAccount/*", "/blog/findBlogById/*", "/tag/tagOfBlogAccount/*")
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**", "/", "/csrf", "/error");
     }
 }

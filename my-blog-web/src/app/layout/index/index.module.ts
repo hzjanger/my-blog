@@ -6,6 +6,7 @@ import {IndexComponent} from './index.component';
 import {IndexContentComponent} from "./index-content/index-content.component";
 import {MaterialModule} from "../../@material/material.module";
 import {ThemeModule} from "../../@theme/theme.module";
+import {NgxEchartsModule} from "ngx-echarts";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {ThemeModule} from "../../@theme/theme.module";
     IndexRoutingModule,
     MaterialModule,
     ThemeModule,
+    NgxEchartsModule
 
   ]
 })

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hzj.myblog.entity.PageResult;
 import com.hzj.myblog.entity.ReturnResponse;
+import com.hzj.myblog.entity.chart.TagWordCloud;
 import com.hzj.myblog.model.Tag;
 import com.hzj.myblog.service.TagService;
 import io.swagger.annotations.Api;
@@ -82,6 +83,20 @@ public class TagController {
     public ReturnResponse<List<Tag>> findTagByBlogTypeId(@PathVariable("blogTypeId") Integer blogTypeId) {
         return new ReturnResponse<>(1, "查找成功", tagService.findTagByBlogTypeId(blogTypeId));
 
+    }
+
+    /**
+     * 统计用户每个标签的数量
+     *
+     * @param userId 用户id
+     * @return 标签数量
+     */
+    @GetMapping("/tagOfBlogAccount/{userId}")
+    @ApiOperation("统计用户每种标签的博客数量")
+    @ApiImplicitParam(name = "userId", value = "用户id", required = true, paramType = "path", dataType = "Long", example = "1")
+    public ReturnResponse<List<TagWordCloud>> tagOfBlogAccount(@PathVariable("userId") Integer userId) {
+        List<TagWordCloud> tagWordClouds = tagService.tagOfBlogAccount(userId);
+        return new ReturnResponse<>(1, "查询成功", tagWordClouds);
     }
 
     /**

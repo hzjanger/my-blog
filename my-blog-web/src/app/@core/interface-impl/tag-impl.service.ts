@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 import {ProxyPrefix} from "../../entity/proxy-prefix";
 import {TagBlogTypeGroup} from "../../entity/group/TagBlogTypeGroup";
 import {PageResult} from "../../entity/page-result";
+import {TagWordCloud} from "../../entity/chart/tag-word-cloud";
 
 @Injectable({
   providedIn: "root"
@@ -50,6 +51,11 @@ export class TagImplService extends TagService {
    */
   findTagByBlogTypeId(blogTypeId: number): Observable<ReturnModel<Tag[]>> {
     return this.http.get<ReturnModel<Tag[]>>(`${this.url}/findTagByBlogTypeId/${blogTypeId}`);
+  }
+
+
+  tagOfBlogAccount(userId: number): Observable<ReturnModel<TagWordCloud[]>> {
+    return this.http.get<ReturnModel<TagWordCloud[]>>(`${this.url}/tagOfBlogAccount/${userId}`);
   }
 
   /**

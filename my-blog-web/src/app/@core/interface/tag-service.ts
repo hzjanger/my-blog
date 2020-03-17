@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {ReturnModel} from "../../entity/return-model";
 import {TagBlogTypeGroup} from "../../entity/group/TagBlogTypeGroup";
 import {PageResult} from "../../entity/page-result";
+import {TagWordCloud} from "../../entity/chart/tag-word-cloud";
 
 export abstract class TagService {
   /**
@@ -35,6 +36,12 @@ export abstract class TagService {
    * @return 标签对象列表
    */
   abstract findTagByBlogTypeId(blogTypeId: number): Observable<ReturnModel<Tag[]>>;
+
+  /**
+   * 统计用户每个标签的数量
+   * @param userId 用户id
+   */
+  abstract tagOfBlogAccount(userId: number): Observable<ReturnModel<TagWordCloud[]>>;
 
   /**
    * 更新标签信息

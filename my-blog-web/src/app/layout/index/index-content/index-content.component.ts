@@ -9,6 +9,8 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BlogAndTypeAndTagGroup} from "../../../entity/group/BlogAndTypeAndTagGroup";
 import {BlogType} from "../../../model/blog-type";
 import {Tag} from "../../../model/tag";
+import {TagService} from "../../../@core/interface/tag-service";
+import {TagWordCloud} from "../../../entity/chart/tag-word-cloud";
 
 @Component({
   selector: 'app-index-content',
@@ -59,12 +61,17 @@ export class IndexContentComponent implements OnInit {
    */
   search: string = null;
 
+  chartOption: any;
+  dataSet: any;
+
 
   constructor(private blogService: BlogService, private blogTypeAccountService: BlogTypeAccountService,
-              private router: Router, private route: ActivatedRoute) {
+              private router: Router, private route: ActivatedRoute, private tagService: TagService) {
   }
 
   ngOnInit() {
+    // @ts-ignore
+    require('echarts-wordcloud');
     this.nickName = this.route.snapshot.paramMap.get('nickName');
     this.userId = +this.route.snapshot.paramMap.get('id');
     this.route.queryParamMap.subscribe((params: Params) => {
@@ -73,18 +80,60 @@ export class IndexContentComponent implements OnInit {
       this.type = params.get('type') || null;
       this.search = params.get('search') || null;
       this.tagName = params.get('tagName') || null;
-      this.findNewestBlog();
+      this.searchUserBlog();
     });
     this.findUserBlogTypeAccount();
+
+    this.tagService.tagOfBlogAccount(this.userId).subscribe(data => {
+      if (data.code === CodeEnum.SUCCESS) {
+        this.onInit(data.data);
+      }
+    })
+
+  }
+
+  onInit(data: TagWordCloud[]) {
+    this.chartOption = {
+      tooltip: {
+        show: true
+      },
+      series: [{
+        type: "wordCloud",
+        shape: 'circle',
+        gridSize: 6,
+        sizeRange: [12, 50],
+        textStyle: {
+          normal: {
+            color: function () {
+              return 'rgb(' + [
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160),
+                Math.round(Math.random() * 160)
+              ].join(',') + ')';
+            }
+          },
+          emphasis: {
+            shadowBlur: 10,
+            shadowColor: '#333'
+          }
+        },
+        data: data,
+      }]
+    };
   }
 
   /**
    * 查找用户最新的博客
    */
-  findNewestBlog() {
+  searchUserBlog() {
     this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize, this.type, this.search, this.tagName).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.pageResult = data.data;
+        // 滚动到最上面
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
       }
     })
   }
@@ -162,6 +211,19 @@ export class IndexContentComponent implements OnInit {
     this.tagName = tag.tagName;
     this.pageIndex = 1;
     this.routerJump();
+  }
+
+  /**
+   * 词云图点击事件
+   * @param outputData 点击的数据
+   */
+  chartClick(outputData: any) {
+    const tagWordCloud: TagWordCloud = outputData.data;
+    if (tagWordCloud) {
+      this.tagName = tagWordCloud.name;
+      this.pageIndex = 1;
+      this.routerJump();
+    }
   }
 
 

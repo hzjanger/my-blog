@@ -1,5 +1,6 @@
 package com.hzj.myblog.service.impl;
 
+import com.hzj.myblog.entity.chart.TagWordCloud;
 import com.hzj.myblog.mapper.TagMapper;
 import com.hzj.myblog.model.Tag;
 import com.hzj.myblog.service.TagService;
@@ -37,6 +38,11 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> findTagByBlogTypeId(Integer blogTypeId) {
         return tagMapper.findTagByBlogTypeId(blogTypeId);
+    }
+
+    @Override
+    public List<TagWordCloud> tagOfBlogAccount(Integer userId) {
+        return tagMapper.tagOfBlogAccount(userId);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.hzj.myblog.mapper;
 
+import com.hzj.myblog.entity.chart.TagWordCloud;
 import com.hzj.myblog.model.Tag;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +44,14 @@ public interface TagMapper {
      * @return 标签对象列表
      */
     List<Tag> findTagByBlogTypeId(Integer blogTypeId);
+
+    /**
+     * 统计用户每个标签的数量
+     *
+     * @param userId 用户id
+     * @return 标签数量
+     */
+    List<TagWordCloud> tagOfBlogAccount(@Param("userId") Integer userId);
 
     /**
      * 更新标签信息

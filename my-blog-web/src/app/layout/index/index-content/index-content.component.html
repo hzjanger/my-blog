@@ -23,7 +23,8 @@
             </a>
             <div class="card-bottom">
               <div class="card-description">
-                {{item.blog.description}}<a [routerLink]="['/article/details', nickName, item.blog.id]" class="read-more">阅读更多>></a>
+                {{item.blog.description}}<a [routerLink]="['/article/details', nickName, item.blog.id]"
+                                            class="read-more">阅读更多>></a>
               </div>
               <div class="blog-label">
                 <a matRipple class="type" (click)="blogTypeClick(item.blogType)">
@@ -56,66 +57,10 @@
 
         <div class="card">
           <div class="card-title">
-            <h3>归档</h3>
-          </div>
-          <ul class="type-menu">
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title">
             <h3>标签</h3>
           </div>
-          <ul class="type-menu">
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-            <li class="type-menu-item">
-              <a>前端</a>
-              <span>10篇</span>
-            </li>
-          </ul>
+          <div *ngIf="chartOption" echarts [options]="chartOption" class="demo-chart"
+               (chartClick)="chartClick($event)"></div>
         </div>
       </div>
 
