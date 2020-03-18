@@ -18,5 +18,8 @@ const bootstrap = () => {
 };
 
 bootstrap().then(() => {
-  document.getElementById('nb-global-spinner').style.display = 'none';
+  const spinner = document.getElementById('nb-global-spinner');
+  if (spinner) {
+    spinner.style.display = 'none';
+  }
 }).catch(err => console.error(err));

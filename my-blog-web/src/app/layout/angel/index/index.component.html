@@ -7,15 +7,15 @@
       <h2>
         <a [routerLink]="['article', userInfo.userId]">{{userInfo.nickName}}</a>
       </h2>
-      <p>个人站</p>
+      <p>个人博客</p>
     </div>
-    <p class="welcome">欢迎来到我的个人站~</p>
+    <p class="welcome">欢迎来到我的个人博客~</p>
     <ul class="nav-box">
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['article', userInfo.userId]">博客主页</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link">简历</a>
+      <li class="nav-item" *ngIf="userInfo.userId === 1">
+        <a class="nav-link" routerLink="/resume">简历</a>
       </li>
     </ul>
   </div>
