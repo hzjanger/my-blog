@@ -5,7 +5,7 @@
 <mapper namespace="com.hzj.myblog.mapper.UserMapper">
     <select id="findUserByAccountAndPassword" parameterType="com.hzj.myblog.entity.request.Login"
             resultType="com.hzj.myblog.model.User">
-        SELECT userId, account, nickName FROM user WHERE account = #{account} AND password = #{password};
+        SELECT userId, account, nickName, level FROM user WHERE account = #{account} AND password = #{password};
     </select>
 
     <select id="findAllUser" resultType="com.hzj.myblog.model.User">

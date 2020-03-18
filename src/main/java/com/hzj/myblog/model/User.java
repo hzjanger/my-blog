@@ -27,14 +27,20 @@ public class User {
      */
     private String nickName;
 
+    /**
+     * 用户的等级,admin,user
+     */
+    private String level;
+
     public User() {
     }
 
-    public User(Integer userId, String account, String password, String nickName) {
+    public User(Integer userId, String account, String password, String nickName, String level) {
         this.userId = userId;
         this.account = account;
         this.password = password;
         this.nickName = nickName;
+        this.level = level;
     }
 
     public String getNickName() {
@@ -69,6 +75,14 @@ public class User {
         this.password = password;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -76,6 +90,7 @@ public class User {
                 ", account='" + account + '\'' +
                 ", password='" + password + '\'' +
                 ", nickName='" + nickName + '\'' +
+                ", level='" + level + '\'' +
                 '}';
     }
 }

@@ -1,5 +1,8 @@
 package com.hzj.myblog.interceptor;
 
+import com.google.gson.Gson;
+import com.hzj.myblog.exception.LevelException;
+import com.hzj.myblog.model.User;
 import com.hzj.myblog.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import org.slf4j.Logger;
@@ -31,9 +34,15 @@ public class HttpBasicAuthorizeHandler implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         if (token != null) {
             Claims claims = jwtUtil.parseJwt(token);
-            return claims != null;
+            if (claims != null) {
+                String subject = claims.getSubject();
+                Gson gson = new Gson();
+                User user = gson.fromJson(subject, User.class);
+                if ("admin".equals(user.getLevel())) {
+                    return true;
+                }
+            }
         }
-        logger.warn("权限不够");
-        return false;
+        throw new LevelException("权限不足");
     }
 }

@@ -58,5 +58,19 @@ public class GlobalExceptionHandler {
         ErrorResponse response = new ErrorResponse("权限不够", expiredJwtException.getClass().getName(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
     }
+
+    /**
+     * 权限不足的异常
+     *
+     * @param levelException 权限异常
+     * @param request        请求
+     * @return 错误信息
+     */
+    @ExceptionHandler(LevelException.class)
+    public ResponseEntity<ErrorResponse> level(LevelException levelException, HttpServletRequest request) {
+        logger.error("权限不足");
+        ErrorResponse response = new ErrorResponse("权限不足", levelException.getClass().getName(), request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
+    }
 }
 
