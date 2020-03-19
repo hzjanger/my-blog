@@ -41,9 +41,7 @@ export class LoginComponent implements OnInit {
         StorageMessage.setToken(data.message);
         StorageMessage.setUserInfo(JSON.stringify(data.data));
         this.snackBarService.success('登录成功');
-        this.router.navigate(['/'], {
-          relativeTo: this.route
-        })
+        this.router.navigate(['/blog', data.data.nickName]);
       } else {
         this.snackBarService.failure(data.message);
       }
