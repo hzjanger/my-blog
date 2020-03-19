@@ -28,7 +28,7 @@ nohup mvn spring-boot:run &
 
 ```bash
 # 进入前端项目根目录
-ng build
+ng build --prod
 
 # 本地创建docker镜像
 docker build -f Dockerfile -t my-blog .
