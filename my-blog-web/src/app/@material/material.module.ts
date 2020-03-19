@@ -15,6 +15,7 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatRippleModule} from "@angular/material/core";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 const MAT_MODULE = [
   MatSidenavModule,
@@ -31,7 +32,8 @@ const MAT_MODULE = [
   MatTableModule,
   MatPaginatorModule,
   MatMenuModule,
-  MatRippleModule
+  MatRippleModule,
+  MatTooltipModule
 ];
 
 @NgModule({
