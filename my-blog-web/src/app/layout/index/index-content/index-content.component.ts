@@ -62,7 +62,6 @@ export class IndexContentComponent implements OnInit {
   search: string = null;
 
   chartOption: any;
-  dataSet: any;
 
 
   constructor(private blogService: BlogService, private blogTypeAccountService: BlogTypeAccountService,
@@ -73,7 +72,7 @@ export class IndexContentComponent implements OnInit {
     // @ts-ignore
     require('echarts-wordcloud');
     this.nickName = this.route.snapshot.paramMap.get('nickName');
-    this.userId = +this.route.snapshot.paramMap.get('id');
+    this.userId = +this.route.snapshot.paramMap.get('userId');
     this.route.queryParamMap.subscribe((params: Params) => {
       this.pageIndex = +params.get('pageIndex') || 1;
       this.pageSize = +params.get('pageSize') || 10;

@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthorService} from "../../../@core/interface/author.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   menuPress: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private authorService: AuthorService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
-              private userService: UserService, private el: ElementRef) {
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
     this.formGroup = this.fb.group({
       search: [null]
     });
-    console.log(this.el.nativeElement.style.getPropertyValue("--color"));
   }
 
   /**

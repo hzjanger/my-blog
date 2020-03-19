@@ -1,12 +1,9 @@
 <mat-drawer-container class="responsive-container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
-    <app-sidenav-user-info></app-sidenav-user-info>
-    <app-sidenav-menu></app-sidenav-menu>
+    <ng-content select="drawer"></ng-content>
   </mat-drawer>
   <mat-drawer-content>
-    <ng-content select="header"></ng-content>
+    <ng-content select="drawer-content-header"></ng-content>
     <ng-content select="router-outlet"></ng-content>
-    <!--    <app-index-header (menuPress)="toggle()"></app-index-header>-->
-    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>

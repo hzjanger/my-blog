@@ -2,11 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDrawer} from "@angular/material/sidenav";
 
 @Component({
-  selector: 'app-drawer',
-  templateUrl: './drawer.component.html',
-  styleUrls: ['./drawer.component.scss']
+  selector: 'app-drawer-container',
+  templateUrl: './drawer-container.component.html',
+  styleUrls: ['./drawer-container.component.scss']
 })
-export class DrawerComponent implements OnInit {
+export class DrawerContainerComponent implements OnInit {
 
   @ViewChild("drawer", {static: false})
   drawer: MatDrawer;

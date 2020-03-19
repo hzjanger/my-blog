@@ -1,0 +1,8 @@
+<mat-nav-list *ngIf="menuList">
+  <mat-list-item *ngFor="let menu of menuList" (click)="blogTypePress.emit(menu)">
+    <div class="item-box">
+      <span class="name">{{menu.typeName}}</span>
+      <span class="account">{{menu.account}}</span>
+    </div>
+  </mat-list-item>
+</mat-nav-list>

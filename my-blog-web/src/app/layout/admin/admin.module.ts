@@ -6,6 +6,7 @@ import {IndexHeaderComponent} from './index-header/index-header.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {AdminComponent} from './admin.component';
 import {MaterialModule} from "../../@material/material.module";
+import {ThemeModule} from "../../@theme/theme.module";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {MaterialModule} from "../../@material/material.module";
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    ThemeModule
   ]
 })
 export class AdminModule {

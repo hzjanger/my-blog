@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SidenavMenu} from "../../../model/sidenav-menu";
-import {SidenavService} from "../../../@core/interface/sidenav.service";
 
 @Component({
   selector: 'app-sidenav-menu',
@@ -9,22 +8,12 @@ import {SidenavService} from "../../../@core/interface/sidenav.service";
 })
 export class SidenavMenuComponent implements OnInit {
 
+  @Input()
   sidenavMenu: SidenavMenu[];
 
-  constructor(private sidenavService: SidenavService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.getSidenav();
   }
-
-  /**
-   * 获取侧边栏数据
-   */
-  getSidenav() {
-    this.sidenavService.getSidenav().subscribe(data => {
-      this.sidenavMenu = data;
-    })
-  }
-
 }

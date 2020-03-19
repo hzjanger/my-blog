@@ -17,6 +17,11 @@ export class BlogTypeAccountImplService extends BlogTypeAccountService {
     super();
   }
 
+  /**
+   * 查找博客分类数量
+   * @param userId 用户的id
+   * @return 博客数量列表
+   */
   findUserBlogTypeAccount(userId: number): Observable<ReturnModel<BlogTypeAccount[]>> {
     return this.http.get<ReturnModel<BlogTypeAccount[]>>(`${this.url}/findBlogTypeAccount/${userId}`);
   }

@@ -6,7 +6,7 @@ export abstract class BlogTypeAccountService {
 
   /**
    * 查找博客分类数量
-   *
+   * @param userId 用户的id
    * @return 博客数量列表
    */
   abstract findUserBlogTypeAccount(userId: number): Observable<ReturnModel<BlogTypeAccount[]>>;

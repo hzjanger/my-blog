@@ -1,7 +1,10 @@
-<app-drawer #drawerComponent>
-  <app-header ngProjectAs="header" (menuPress)="menuClick()"></app-header>
+<app-drawer-container #drawerComponent>
+  <drawer>
+    <app-sidenav-user-info></app-sidenav-user-info>
+    <app-index-sidenav-menu *ngIf="userId" [userId]="userId" (tagPress)="tagClick($event)" (blogTypePress)="blogTypeClick($event)" (homePress)="homeClick()"></app-index-sidenav-menu>
+  </drawer>
+  <drawer-content-header>
+    <app-header (menuPress)="menuClick()"></app-header>
+  </drawer-content-header>
   <router-outlet></router-outlet>
-</app-drawer>
-
-
-
+</app-drawer-container>

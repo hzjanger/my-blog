@@ -1,0 +1,8 @@
+<mat-nav-list *ngIf="menuList">
+  <mat-list-item *ngFor="let menu of menuList" (click)="tagPress.emit(menu)">
+    <div class="item-box">
+      <span class="name">{{menu.name}}</span>
+      <span class="account">{{menu.value}}</span>
+    </div>
+  </mat-list-item>
+</mat-nav-list>

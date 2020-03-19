@@ -10,6 +10,11 @@ export interface SidenavMenu {
   title: string;
 
   /**
+   * 请求的api地址
+   */
+  requestUrl?: string;
+
+  /**
    * 下级内容
    */
   children?: {

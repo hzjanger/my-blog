@@ -1,5 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {DrawerComponent} from "../../@theme/component/drawer/drawer.component";
+import {DrawerContainerComponent} from "../../@theme/component/drawer-container/drawer-container.component";
+import {SidenavService} from "../../@core/interface/sidenav.service";
+import {SidenavMenu} from "../../model/sidenav-menu";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {TagWordCloud} from "../../entity/chart/tag-word-cloud";
+import {BlogType} from "../../model/blog-type";
 
 @Component({
   selector: 'app-index',
@@ -10,13 +15,38 @@ export class IndexComponent implements OnInit {
 
   nickName: string;
 
-  @ViewChild("drawerComponent", {static: false})
-  drawerComponent: DrawerComponent;
+  /**
+   * 侧边栏
+   */
+  sidenavMenu: SidenavMenu[];
 
-  constructor() {
+  /**
+   * 用户id
+   */
+  userId: number = null;
+
+  /**
+   * 标签名称
+   */
+  tagName: string = null;
+
+  /**
+   * 博客分类国名称
+   */
+  typeName: string = null;
+
+
+  @ViewChild("drawerComponent", {static: false})
+  drawerComponent: DrawerContainerComponent;
+
+  constructor(private sidenavService: SidenavService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((param: Params) => {
+      this.userId = +param.get('userId');
+    });
+    this.getSidenav();
   }
 
   /**
@@ -24,6 +54,62 @@ export class IndexComponent implements OnInit {
    */
   menuClick() {
     this.drawerComponent.toggle();
+  }
+
+  /**
+   * 获取侧边栏数据
+   */
+  getSidenav() {
+    this.sidenavService.getUserSidenav().subscribe(data => {
+      this.sidenavMenu = data;
+    })
+  }
+
+  /**
+   * 标签点击事件
+   * @param tag
+   */
+  tagClick(tag: TagWordCloud) {
+    this.tagName = tag.name;
+    this.typeName = null;
+    this.routerJump();
+  }
+
+  /**
+   * 点击博客分类
+   * @param blogType 博客分类
+   */
+  blogTypeClick(blogType: BlogType) {
+    this.typeName = blogType.typeName;
+    this.tagName = null;
+    this.routerJump();
+  }
+
+  /**
+   * 点击home
+   */
+  homeClick() {
+    this.typeName = null;
+    this.tagName = null;
+    this.routerJump();
+  }
+
+  /**
+   * 路由跳转
+   */
+  routerJump() {
+    let queryParams: any = {};
+    if (this.typeName !== null) {
+      queryParams.type = this.typeName;
+    }
+
+    if (this.tagName !== null) {
+      queryParams.tagName = this.tagName;
+    }
+    this.router.navigate(['./'], {
+      queryParams: queryParams,
+      relativeTo: this.route
+    });
   }
 
 }

@@ -18,4 +18,8 @@ export class SidenavImplService extends SidenavService {
   getSidenav(): Observable<SidenavMenu[]> {
     return this.http.get<SidenavMenu[]>(`${this.url}/sidenav.json`);
   }
+
+  getUserSidenav(): Observable<SidenavMenu[]> {
+    return this.http.get<SidenavMenu[]>(`${this.url}/user-sidenav.json`)
+  }
 }

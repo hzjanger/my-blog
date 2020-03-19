@@ -1,0 +1,34 @@
+<mat-accordion>
+  <mat-expansion-panel matRipple [hideToggle]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title (click)="homePress.emit()">
+        <mat-icon class="home">home</mat-icon>
+        <span class="title-text">主页</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="type" svgIcon="mkdir"></mat-icon>
+        <span class="title-text">分类</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <app-index-blog-type-account *ngIf="userId" [userId]="userId"
+                                   (blogTypePress)="blogTypePress.emit($event)"></app-index-blog-type-account>
+    </ng-template>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon class="tag" svgIcon="tag"></mat-icon>
+        <span class="title-text">标签</span>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <app-index-blog-tag-account *ngIf="userId" [userId]="userId"
+                                  (tagPress)="tagPress.emit($event)"></app-index-blog-tag-account>
+    </ng-template>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -6,7 +6,7 @@ import {IndexComponent} from "./index/index.component";
 const routes: Routes = [
   {path: '', component: IndexComponent},
   {
-    path: 'article/:id',
+    path: 'article/:userId',
     loadChildren: () => import('../index/index.module').then(mod => mod.IndexModule)
   }
 ];
