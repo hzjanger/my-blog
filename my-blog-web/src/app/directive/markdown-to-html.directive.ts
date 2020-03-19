@@ -1,5 +1,6 @@
 import {AfterViewInit, Attribute, Directive, EventEmitter, Input, Output} from '@angular/core';
 import {HtmlEscape} from "../utils/html-escape";
+import {SelectorEscape} from "../utils/selector-escape";
 
 declare var editormd: any;
 
@@ -52,8 +53,19 @@ export class MarkdownToHTMLDirective implements AfterViewInit {
       if (target.nodeName.toLocaleLowerCase() === 'a') {
         target.removeAttribute("href");
         // this.anchorPress.emit(target.text);
+        const str = ` !"#$%&'()*+,./:;<=>?@[\\]^\`{|}~`;
+
+        let find = SelectorEscape.selectEncode(target.text);
+        // ` !"#$%&'()*+,./:;<=>?@[\\]^\`{|}~`.split('').forEach(item => {
+        //   find.repeat(new RegExp(item), ' ');
+        // });
+        // console.log(find.join(''));
+        // console.log($(`a[name=Java\\ Bean传参法]`));
+        // $("html, body").animate({
+        //   scrollTop: $(`a[name=${find.join('')}]`).offset().top - 70
+        // }, {duration: 500, easing: "swing"});
         $("html, body").animate({
-          scrollTop: $(`a[name=${target.text}`).offset().top - 70
+          scrollTop: $(`a[name=${find}]`).offset().top - 70
         }, {duration: 500, easing: "swing"});
       }
     });

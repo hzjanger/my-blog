@@ -1,3 +1,9 @@
+//app-header {
+//  position: fixed;
+//  width: 100%;
+//  z-index: 3;
+//}
+
 .background-cover {
   background-color: #1976d2;
   width: 100%;
@@ -5,6 +11,11 @@
 }
 
 .container {
+  width: 100%;
+}
+
+
+.article-content {
   width: 100%;
   max-width: 960px;
   margin: auto;
@@ -40,11 +51,11 @@
     .markdown-toc-list {
       list-style: none;
 
-      > li > ul {
+      ul {
         list-style: none;
       }
 
-      .toc-level-2, .toc-level-3 {
+      .toc-level-2, .toc-level-3, .toc-level-4 {
         cursor: pointer;
         color: #727272;
 
