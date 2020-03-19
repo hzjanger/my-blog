@@ -1,6 +1,7 @@
-<app-header></app-header>
+<app-drawer #drawerComponent>
+  <app-header ngProjectAs="header" (menuPress)="menuClick()"></app-header>
+  <router-outlet></router-outlet>
+</app-drawer>
 
-
-<router-outlet></router-outlet>
 
 

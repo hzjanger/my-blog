@@ -7,6 +7,10 @@ import {HeaderComponent} from './component/header/header.component';
 import {RouterModule} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AdminSubContentComponent} from './component/admin-sub-content/admin-sub-content.component';
+import {DrawerComponent} from './component/drawer/drawer.component';
+import {SidenavUserInfoComponent} from "./component/sidenav-user-info/sidenav-user-info.component";
+import {SidenavMenuItemComponent} from "./component/sidenav-menu-item/sidenav-menu-item.component";
+import {SidenavMenuComponent} from "./component/sidenav-menu/sidenav-menu.component";
 
 
 @NgModule({
@@ -14,7 +18,11 @@ import {AdminSubContentComponent} from './component/admin-sub-content/admin-sub-
     DialogLayoutComponent,
     ConfirmDialogComponent,
     HeaderComponent,
-    AdminSubContentComponent
+    AdminSubContentComponent,
+    DrawerComponent,
+    SidenavUserInfoComponent,
+    SidenavMenuItemComponent,
+    SidenavMenuComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +35,8 @@ import {AdminSubContentComponent} from './component/admin-sub-content/admin-sub-
     DialogLayoutComponent,
     ConfirmDialogComponent,
     HeaderComponent,
-    AdminSubContentComponent
+    AdminSubContentComponent,
+    DrawerComponent
   ],
   entryComponents: [
     ConfirmDialogComponent

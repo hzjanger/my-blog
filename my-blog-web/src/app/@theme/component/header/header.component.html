@@ -1,19 +1,22 @@
 <mat-toolbar class="mat-elevation-z3">
   <div class="header-left">
-    <span class="title">
-    <a *ngIf="userInfo" [routerLink]="['/blog', nickName, 'article', userInfo.userId]">Angel</a>
-  </span>
+    <div class="title">
+      <button *ngIf="showMenu" mat-icon-button class="menu" (click)="menuPress.emit()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a *ngIf="userInfo" [routerLink]="['/blog', nickName, 'article', userInfo.userId]">Angel</a>
+    </div>
     <form [formGroup]="formGroup" (ngSubmit)="search()">
       <input class="search-input" placeholder="输入搜索内容" formControlName="search">
     </form>
   </div>
 
-  <ul class="menu" *ngIf="!isLogin">
-    <li class="menu-item">
-      <a class="menu-link" routerLink="/user/login">登录</a>
+  <ul class="nav-bar" *ngIf="!isLogin">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/user/login">登录</a>
     </li>
-    <li class="menu-item">
-      <a class="menu-link" routerLink="/user/register">注册</a>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/user/register">注册</a>
     </li>
   </ul>
   <div *ngIf="isLogin">
@@ -26,4 +29,4 @@
     </mat-menu>
   </div>
 </mat-toolbar>
-<div class="toolbar"></div>
+<!--<div class="toolbar"></div>-->

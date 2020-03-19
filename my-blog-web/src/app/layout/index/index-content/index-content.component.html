@@ -1,73 +1,63 @@
-<div class="container">
-  <div class="content">
-    <div class="title">
-      <h3>最新发布</h3>
-    </div>
-    <div class="blog-content-box">
-      <div class="left-container">
-        <ng-template [ngIf]="pageResult">
-          <div class="article" *ngFor="let item of pageResult.rows">
-            <a class="img-box" [routerLink]="['/article/details', nickName, item.blog.id]">
-              <header matRipple>
-                <img alt="图片" [src]="item.blog.imageUrl">
-                <div class="action">
-                  <div class="action-card">
-                    <h3>{{item.blog.title}}</h3>
-                    <a>
-                      <mat-icon>alarm</mat-icon>
-                      <span>{{item.blog.updateDate | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
-                    </a>
-                  </div>
-                </div>
-              </header>
-            </a>
-            <div class="card-bottom">
-              <div class="card-description">
-                {{item.blog.description}}<a [routerLink]="['/article/details', nickName, item.blog.id]"
-                                            class="read-more">阅读更多>></a>
-              </div>
-              <div class="blog-label">
-                <a matRipple class="type" (click)="blogTypeClick(item.blogType)">
-                  <mat-icon svgIcon="mkdir"></mat-icon>
-                  <span>{{item.blogType.typeName}}</span>
-                </a>
-                <a matRipple class="tag" (click)="tagClick(item.tag)">
-                  <mat-icon svgIcon="tag"></mat-icon>
-                  <span>{{item.tag.tagName}}</span>
+<div class="blog-content-box">
+  <div class="left-container">
+    <ng-template [ngIf]="pageResult">
+      <div class="article" *ngFor="let item of pageResult.rows">
+        <a class="img-box" [routerLink]="['/article/details', nickName, item.blog.id]">
+          <header matRipple>
+            <img alt="图片" [src]="item.blog.imageUrl">
+            <div class="action">
+              <div class="action-card">
+                <h3>{{item.blog.title}}</h3>
+                <a>
+                  <mat-icon>alarm</mat-icon>
+                  <span>{{item.blog.updateDate | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
                 </a>
               </div>
             </div>
+          </header>
+        </a>
+        <div class="card-bottom">
+          <div class="card-description">
+            {{item.blog.description}}<a [routerLink]="['/article/details', nickName, item.blog.id]"
+                                        class="read-more">阅读更多>></a>
           </div>
-          <mat-paginator [length]="pageResult.total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
-                         (page)="page($event)"></mat-paginator>
-        </ng-template>
-      </div>
-      <div class="right-container">
-        <div class="card">
-          <div class="card-title">
-            <h3>文章分类</h3>
+          <div class="blog-label">
+            <a matRipple class="type" (click)="blogTypeClick(item.blogType)">
+              <mat-icon svgIcon="mkdir"></mat-icon>
+              <span>{{item.blogType.typeName}}</span>
+            </a>
+            <a matRipple class="tag" (click)="tagClick(item.tag)">
+              <mat-icon svgIcon="tag"></mat-icon>
+              <span>{{item.tag.tagName}}</span>
+            </a>
           </div>
-          <ul class="type-menu" *ngIf="blogTypeAccount">
-            <li class="type-menu-item" *ngFor="let item of blogTypeAccount">
-              <a (click)="blogTypeSearch(item)">{{item.typeName}}</a>
-              <span>{{item.account}}篇</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title">
-            <h3>标签</h3>
-          </div>
-          <div *ngIf="chartOption" echarts [options]="chartOption" class="demo-chart"
-               (chartClick)="chartClick($event)"></div>
         </div>
       </div>
-
-    </div>
+      <mat-paginator [length]="pageResult.total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+                     (page)="page($event)"></mat-paginator>
+    </ng-template>
   </div>
 </div>
 
 
+<!--      <div class="right-container">-->
+<!--        <div class="card">-->
+<!--          <div class="card-title">-->
+<!--            <h3>文章分类</h3>-->
+<!--          </div>-->
+<!--          <ul class="type-menu" *ngIf="blogTypeAccount">-->
+<!--            <li class="type-menu-item" *ngFor="let item of blogTypeAccount">-->
+<!--              <a (click)="blogTypeSearch(item)">{{item.typeName}}</a>-->
+<!--              <span>{{item.account}}篇</span>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
 
-
+<!--        <div class="card">-->
+<!--          <div class="card-title">-->
+<!--            <h3>标签</h3>-->
+<!--          </div>-->
+<!--          <div *ngIf="chartOption" echarts [options]="chartOption" class="demo-chart"-->
+<!--               (chartClick)="chartClick($event)"></div>-->
+<!--        </div>-->
+<!--      </div>-->

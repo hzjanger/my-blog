@@ -1,12 +1,23 @@
+$color: red;
+
 mat-toolbar {
-  position: fixed;
+  position: sticky;
+
   top: 0;
   justify-content: space-between;
   background: #1976d2;
   z-index: 3;
+  width: 100%;
 
   .title {
 
+    display: flex;
+    align-items: center;
+
+    .menu {
+      color: #ffffff;
+      //margin-right: .5rem;
+    }
 
     a {
       color: #ffffff;
@@ -61,13 +72,13 @@ mat-toolbar {
   width: 100%;
 }
 
-.menu {
+.nav-bar {
   list-style: none;
   display: flex;
   padding-right: 1rem;
 
 
-  .menu-link {
+  .nav-link {
     font-size: 1rem;
     padding: 0 .5rem;
     color: #ffffff;

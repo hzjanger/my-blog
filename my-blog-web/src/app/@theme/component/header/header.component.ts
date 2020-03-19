@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthorService} from "../../../@core/interface/author.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
@@ -19,8 +19,17 @@ export class HeaderComponent implements OnInit {
 
   formGroup: FormGroup;
 
+  @Input()
+  showMenu: boolean = true;
+
+  /**
+   * 菜单按钮点击事件
+   */
+  @Output()
+  menuPress: EventEmitter<void> = new EventEmitter<void>();
+
   constructor(private authorService: AuthorService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -29,6 +38,7 @@ export class HeaderComponent implements OnInit {
     this.formGroup = this.fb.group({
       search: [null]
     });
+    console.log(this.el.nativeElement.style.getPropertyValue("--color"));
   }
 
   /**
