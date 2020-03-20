@@ -1,10 +1,21 @@
-<mat-drawer-container class="responsive-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened>
+<!--<mat-drawer-container class="responsive-container" autosize>-->
+<!--  <mat-drawer #drawer class="sidenav" mode="side" opened>-->
+<!--    <app-sidenav-user-info></app-sidenav-user-info>-->
+<!--    <app-sidenav-menu></app-sidenav-menu>-->
+<!--  </mat-drawer>-->
+<!--  <mat-drawer-content>-->
+<!--    <app-index-header (menuPress)="toggle()"></app-index-header>-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </mat-drawer-content>-->
+<!--</mat-drawer-container>-->
+<app-drawer-container #drawerContainerComponent>
+  <drawer>
     <app-sidenav-user-info></app-sidenav-user-info>
-    <app-sidenav-menu></app-sidenav-menu>
-  </mat-drawer>
-  <mat-drawer-content>
-    <app-index-header (menuPress)="toggle()"></app-index-header>
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container>
+    <app-sidenav-menu [sidenavMenu]="sidenavMenus"></app-sidenav-menu>
+    <!--    <app-index-sidenav-menu *ngIf="userId" [userId]="userId" (tagPress)="tagClick($event)" (blogTypePress)="blogTypeClick($event)" (homePress)="homeClick()"></app-index-sidenav-menu>-->
+  </drawer>
+  <drawer-content-header>
+    <app-index-header (menuPress)="menuClick()"></app-index-header>
+  </drawer-content-header>
+  <router-outlet></router-outlet>
+</app-drawer-container>

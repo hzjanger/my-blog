@@ -116,7 +116,7 @@ export class ArticleComponent implements OnInit {
           const blog: Blog = {...result, ...this.formGroup.value, userId, id: this.blogId};
           this.updateBlog(blog);
         } else {
-          const num = Math.floor(Math.random() * 20);
+          const num = Math.floor(Math.random() * 18 + 1);
           const blog: Blog = {
             ...result, ...this.formGroup.value,
             userId,

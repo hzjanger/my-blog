@@ -10,6 +10,7 @@ import {EditorMdComponent} from "../editor-md/editor-md.component";
 import {MyArticleComponent} from './my-article/my-article.component';
 import {MaterialModule} from "../../../@material/material.module";
 import {ThemeModule} from "../../../@theme/theme.module";
+import {ZMarkdownModule} from "@hzjanger/z-markdown";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {ThemeModule} from "../../../@theme/theme.module";
     ArticleRoutingModule,
     MaterialModule,
     ThemeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ZMarkdownModule,
   ],
   entryComponents: [
     ArticleInfoDialogComponent

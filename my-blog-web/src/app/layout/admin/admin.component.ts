@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDrawer} from "@angular/material/sidenav";
+import {DrawerContainerComponent} from "../../@theme/component/drawer-container/drawer-container.component";
+import {SidenavService} from "../../@core/interface/sidenav.service";
+import {SidenavMenu} from "../../model/sidenav-menu";
 
 @Component({
   selector: 'app-admin',
@@ -8,35 +10,26 @@ import {MatDrawer} from "@angular/material/sidenav";
 })
 export class AdminComponent implements OnInit {
 
-  @ViewChild('drawer', {static: false})
-  drawer: MatDrawer;
+  @ViewChild('drawerContainerComponent', {static: false})
+  drawerContainerComponent: DrawerContainerComponent;
 
-  constructor() { }
+  sidenavMenus: SidenavMenu[];
+
+  constructor(private sidenavService: SidenavService) {
+  }
 
   ngOnInit() {
+    this.getSidenav();
   }
 
-  /**
-   * 关闭侧边栏
-   */
-  close() {
-    this.drawer.close().then(r => r);
+  menuClick() {
+    this.drawerContainerComponent.toggle();
   }
 
-  /**
-   * 打开侧边栏
-   */
-  open() {
-    this.drawer.open().then(r => r);
-  }
-
-  /**
-   * 切换侧边栏
-   * 开启切换为关闭
-   * 关闭切换为开启
-   */
-  toggle() {
-    this.drawer.toggle().then(r => r);
+  getSidenav() {
+    this.sidenavService.getSidenav().subscribe(data => {
+      this.sidenavMenus = data;
+    })
   }
 
 }

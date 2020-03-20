@@ -14,6 +14,9 @@
   width: 100%;
 }
 
+#append-test {
+  width: 100%;
+}
 
 .article-content {
   width: 100%;
@@ -21,16 +24,16 @@
   margin: auto;
   background: #ffffff;
   display: flex;
+  justify-content: center;
 
-  .article-content {
-    width: 738px;
+  .article {
+    max-width: 738px;
     margin-top: -94px;
     border-radius: 5px;
     z-index: 2;
-
-    .article {
-      padding: 20px;
-    }
+    padding: 20px;
+    background: #ffffff;
+    width: 100%;
   }
 
   .menu {

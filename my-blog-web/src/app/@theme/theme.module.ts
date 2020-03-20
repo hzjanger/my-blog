@@ -44,7 +44,7 @@ import {DrawerComponent} from "./component/drawer-container/drawer.component";
     SidenavUserInfoComponent,
     SidenavMenuComponent,
     DrawerContentHeaderComponent,
-    DrawerComponent
+    DrawerComponent,
   ],
   entryComponents: [
     ConfirmDialogComponent

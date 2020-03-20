@@ -5,6 +5,7 @@ import {ArticleRoutingModule} from './article-routing.module';
 import {ArticleComponent} from './article.component';
 import {MarkdownToHTMLDirective} from "../../directive/markdown-to-html.directive";
 import {ThemeModule} from "../../@theme/theme.module";
+import {ZMarkdownModule} from "@hzjanger/z-markdown";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ThemeModule} from "../../@theme/theme.module";
   imports: [
     CommonModule,
     ArticleRoutingModule,
-    ThemeModule
+    ThemeModule,
+    ZMarkdownModule
   ]
 })
 export class ArticleModule {
