@@ -1,0 +1,19 @@
+footer {
+  padding: 3.75rem 0;
+  background: #232328;
+  color: #ffffff;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-around;
+
+  .information {
+    button {
+      background-color: #1E9FFF;
+
+      a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+    }
+  }
+}

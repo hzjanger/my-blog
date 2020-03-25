@@ -33,22 +33,8 @@
     </div>
     <div class="card-content">
       <ul>
-        <li class="fill-full">
-          <a>● <span>热爱编程，比较扎实的前端基础， 掌握 Typescript， HTML、 CSS、 ES6，有
-良好的编程习惯和代码风格</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>熟悉 Angular 前端框架， 熟练使用 Scss 预处理器， 使用 Material、 Ng-Zorro
-等前端组件库</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>了解 Webpack 前端打包工具，熟悉版本控制工具 Git</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>熟悉 http 协议，了解 java 等后端语言，能够与后端同事配合完成工作</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>熟悉 Echarts 可视化库</span></a>
+        <li class="fill-full" *ngFor="let skill of skillLevel">
+          <a>● <span>{{skill}}</span></a>
         </li>
       </ul>
     </div>
@@ -60,23 +46,8 @@
     <div class="card-content">
       <h3>个人博客</h3>
       <ul>
-        <li class="fill-full">
-          <a>● <span>转义 Markdown 语法中的非代码部分中的代码,防止 XSS 攻击</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>借助腾讯防水墙在使用邮箱注册时实现人机验证</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>通过 Echarts 实现博客标签的词云图</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>使用 Editor.md 实现 markdown 语法的编写</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>基本的博客功能，包括文章、搜索、分类、归档、标签管理、 文章导出等</span></a>
-        </li>
-        <li class="fill-full">
-          <a>● <span>使用 Material 组件库进行 UI 界面的编写， 实现 Material Design 风格</span></a>
+        <li class="fill-full" *ngFor="let description of blogDescriptions">
+          <a>● <span>{{description}}</span></a>
         </li>
       </ul>
       <h3>使用技术</h3>

@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'resume',
     loadChildren: () => import('./layout/resume/resume.module').then(mod => mod.ResumeModule)
   },
-  {path: '', redirectTo: 'user', pathMatch: 'full'}
+  {path: '', redirectTo: 'blog/hzjangel', pathMatch: 'full'}
 ];
 
 @NgModule({

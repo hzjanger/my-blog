@@ -1,3 +1,3 @@
 export class Constant {
-  static blogImageUrlPrefix = 'assets/img/material-num.png';
+  static blogImageUrlPrefix = 'https://hezhijian.oss-cn-beijing.aliyuncs.com/blog/img/material-num.png';
 }

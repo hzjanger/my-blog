@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { AngelRoutingModule } from './angel-routing.module';
-import { IndexComponent } from './index/index.component';
+import {AngelRoutingModule} from './angel-routing.module';
+import {IndexComponent} from './index/index.component';
+import {ThemeModule} from "../../@theme/theme.module";
 
 
 @NgModule({
   declarations: [IndexComponent],
   imports: [
     CommonModule,
-    AngelRoutingModule
+    AngelRoutingModule,
+    ThemeModule
   ]
 })
-export class AngelModule { }
+export class AngelModule {
+}

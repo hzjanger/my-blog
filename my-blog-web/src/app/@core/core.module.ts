@@ -18,12 +18,15 @@ import {SidenavImplService} from "./interface-impl/sidenav-impl.service";
 import {MatIconRegistry} from "@angular/material/icon";
 import {DomSanitizer} from "@angular/platform-browser";
 import {loadSvgResource} from "../utils/svg.utils";
+import {ResumeService} from "./interface/resume.service";
+import {ResumeImplService} from "./interface-impl/resume-impl.service";
 
 const SERVICE = [
   {provide: AuthorService, useClass: AuthorImplService},
   {provide: BlogService, useClass: BlogImplService},
   {provide: BlogTypeAccountService, useClass: BlogTypeAccountImplService},
   {provide: BlogTypeService, useClass: BlogTypeImplService},
+  {provide: ResumeService, useClass: ResumeImplService},
   {provide: SidenavService, useClass: SidenavImplService},
   {provide: TagService, useClass: TagImplService},
   {provide: UserService, useClass: UserImplService}

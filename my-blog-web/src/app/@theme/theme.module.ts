@@ -13,6 +13,7 @@ import {SidenavMenuItemComponent} from "./component/sidenav-menu-item/sidenav-me
 import {SidenavMenuComponent} from "./component/sidenav-menu/sidenav-menu.component";
 import {DrawerContentHeaderComponent} from "./component/drawer-container/drawer-content-header.component";
 import {DrawerComponent} from "./component/drawer-container/drawer.component";
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {DrawerComponent} from "./component/drawer-container/drawer.component";
     SidenavMenuItemComponent,
     SidenavMenuComponent,
     DrawerContentHeaderComponent,
-    DrawerComponent
+    DrawerComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -34,18 +36,19 @@ import {DrawerComponent} from "./component/drawer-container/drawer.component";
     RouterModule,
     ReactiveFormsModule
   ],
-  exports: [
-    CommonModule,
-    DialogLayoutComponent,
-    ConfirmDialogComponent,
-    HeaderComponent,
-    AdminSubContentComponent,
-    DrawerContainerComponent,
-    SidenavUserInfoComponent,
-    SidenavMenuComponent,
-    DrawerContentHeaderComponent,
-    DrawerComponent,
-  ],
+    exports: [
+        CommonModule,
+        DialogLayoutComponent,
+        ConfirmDialogComponent,
+        HeaderComponent,
+        AdminSubContentComponent,
+        DrawerContainerComponent,
+        SidenavUserInfoComponent,
+        SidenavMenuComponent,
+        DrawerContentHeaderComponent,
+        DrawerComponent,
+        FooterComponent,
+    ],
   entryComponents: [
     ConfirmDialogComponent
   ]
