@@ -8,6 +8,7 @@ button {
   min-height: 100vh;
   height: 100%;
   background-color: #eceef1;
+  box-sizing: border-box;
 }
 
 .m-bg {
@@ -200,16 +201,9 @@ button {
       width: 65%;
     }
   }
-}
 
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) {
-
-  .card-box {
-    .form-box {
-      width: 75%;
-    }
+  .login-box {
+    padding-top: 4rem;
   }
-
 
 }

@@ -3,6 +3,7 @@
   justify-content: center;
   width: 100%;
   padding-top: 2rem;
+  box-sizing: border-box;
 
   .left-container {
     flex: 1;
@@ -181,4 +182,11 @@
     }
   }
 
+}
+
+@media (max-width: 767.98px) {
+  .blog-content-box {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

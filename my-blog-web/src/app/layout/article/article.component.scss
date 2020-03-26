@@ -19,12 +19,14 @@
 }
 
 .article-content {
+  box-sizing: border-box;
   width: 100%;
   max-width: 960px;
   margin: auto;
   background: #ffffff;
   display: flex;
   justify-content: center;
+  transition: all 400ms;
 
   .article {
     max-width: 738px;
@@ -68,4 +70,12 @@
       }
     }
   }
+}
+
+@media (max-width: 800px) {
+  .article-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
 }

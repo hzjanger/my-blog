@@ -4,7 +4,9 @@
   background-size: cover;
   background-attachment: fixed;
   width: 100%;
-  height: 100vh;
+  position: relative;
+  //height: 100vh;
+  padding-top: 4rem;
 
   .information-box {
     position: relative;
@@ -104,12 +106,12 @@
 }
 
 .section {
-  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  padding-bottom: 1rem;
 
   .my-product {
     font-weight: normal;
@@ -133,7 +135,11 @@
 
     .card-content {
       display: flex;
-      height: 168px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .card-footer {
@@ -148,6 +154,18 @@
           color: #1976d2;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .product-box {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+
+    .card {
+      margin-bottom: 1rem;
     }
   }
 }
