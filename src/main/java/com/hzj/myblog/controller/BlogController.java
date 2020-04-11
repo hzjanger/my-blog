@@ -6,7 +6,9 @@ import com.hzj.myblog.entity.PageResult;
 import com.hzj.myblog.entity.ReturnResponse;
 import com.hzj.myblog.entity.group.BlogAndTypeAndTagGroup;
 import com.hzj.myblog.model.Blog;
+import com.hzj.myblog.model.User;
 import com.hzj.myblog.service.BlogService;
+import com.hzj.myblog.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -30,6 +32,9 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 添加博客
@@ -66,22 +71,27 @@ public class BlogController {
     }
 
 
-    @GetMapping("/searchUserBlog/{userId}")
+    @GetMapping("/searchUserBlog/{nickName}")
     @ApiOperation(value = "搜索用户的博客", notes = "current和pageSize默认为1和10,blogType默认为'',searchValue默认为''")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "userId", value = "用户id", required = true, paramType = "path", dataType = "Long", example = "6"),
+            @ApiImplicitParam(name = "nickName", value = "用户的昵称", required = true, paramType = "path", dataType = "String", example = "hzjangel"),
             @ApiImplicitParam(name = "pageIndex", value = "页数", paramType = "query", dataType = "Long", example = "1"),
             @ApiImplicitParam(name = "pageSize", value = "页条数", paramType = "query", dataType = "Long", example = "10"),
             @ApiImplicitParam(name = "blogType", value = "博客分类", paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "searchValue", value = "博客搜索内容", paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "tagName", value = "博客标签", paramType = "query", dataType = "String")
     })
-    public ReturnResponse<PageResult<BlogAndTypeAndTagGroup>> searchUserBlog(@PathVariable("userId") Integer userId,
+    public ReturnResponse<PageResult<BlogAndTypeAndTagGroup>> searchUserBlog(@PathVariable("nickName") String nickName,
                                                                              @RequestParam(value = "pageIndex", defaultValue = "1") Integer current,
                                                                              @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize,
                                                                              @RequestParam(value = "blogType", required = false) String blogType,
                                                                              @RequestParam(value = "searchValue", required = false) String searchValue,
                                                                              @RequestParam(value = "tagName", required = false) String tagName) {
+        User user = userService.findUserByNickname(nickName);
+        if (user == null) {
+            return new ReturnResponse<>(1, "查询为空");
+        }
+        Integer userId = user.getUserId();
         PageHelper.startPage(current, pageSize);
         PageInfo<BlogAndTypeAndTagGroup> pageInfo = new PageInfo<>(blogService.searchUserBlog(userId, blogType, searchValue, tagName));
         PageResult<BlogAndTypeAndTagGroup> pageResult = new PageResult<>(pageInfo.getTotal(), pageInfo.getList());
