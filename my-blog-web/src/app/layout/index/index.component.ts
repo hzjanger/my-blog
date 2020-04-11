@@ -13,17 +13,15 @@ import {BlogType} from "../../model/blog-type";
 })
 export class IndexComponent implements OnInit {
 
-  nickName: string;
-
   /**
    * 侧边栏
    */
   sidenavMenu: SidenavMenu[];
 
   /**
-   * 用户id
+   * 用户的昵称
    */
-  userId: number = null;
+  nickName: string = null;
 
   /**
    * 标签名称
@@ -44,7 +42,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((param: Params) => {
-      this.userId = +param.get('userId');
+      this.nickName = param.get('nickName');
     });
     this.getSidenav();
   }
@@ -70,6 +68,7 @@ export class IndexComponent implements OnInit {
    * @param tag
    */
   tagClick(tag: TagWordCloud) {
+    this.drawerComponent.toggle();
     this.tagName = tag.name;
     this.typeName = null;
     this.routerJump();
@@ -80,6 +79,7 @@ export class IndexComponent implements OnInit {
    * @param blogType 博客分类
    */
   blogTypeClick(blogType: BlogType) {
+    this.drawerComponent.toggle();
     this.typeName = blogType.typeName;
     this.tagName = null;
     this.routerJump();
@@ -89,6 +89,7 @@ export class IndexComponent implements OnInit {
    * 点击home
    */
   homeClick() {
+    this.drawerComponent.toggle();
     this.typeName = null;
     this.tagName = null;
     this.routerJump();

@@ -13,10 +13,10 @@ export class IndexBlogTypeAccountComponent implements OnInit {
   menuList: BlogTypeAccount[];
 
   /**
-   * 用户的id
+   * 用户的昵称
    */
   @Input()
-  userId: number;
+  nickName: string;
 
   @Output()
   blogTypePress: EventEmitter<BlogTypeAccount> = new EventEmitter<BlogTypeAccount>();
@@ -34,7 +34,7 @@ export class IndexBlogTypeAccountComponent implements OnInit {
    * @return 博客数量列表
    */
   findUserBlogTypeAccount() {
-    this.blogTypeAccountService.findUserBlogTypeAccount(this.userId).subscribe(data => {
+    this.blogTypeAccountService.findUserBlogTypeAccount(this.nickName).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.menuList = data.data;
       }

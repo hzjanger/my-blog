@@ -5,14 +5,15 @@
     </div>
     <div class="name-box">
       <h2>
-        <a [routerLink]="['article', userInfo.userId]">{{userInfo.nickName}}</a>
+        <a [routerLink]="['/blog', userInfo.nickName
+        ]">{{userInfo.nickName}}</a>
       </h2>
       <p>我的主页</p>
     </div>
     <p class="welcome">欢迎来到我的个人主页~</p>
     <ul class="nav-box">
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['article', userInfo.userId]">博客主页</a>
+        <a class="nav-link" [routerLink]="['/blog', userInfo.nickName]">博客主页</a>
       </li>
 <!--      <li class="nav-item" *ngIf="userInfo.userId === 1">-->
 <!--        <a class="nav-link" routerLink="/resume">简历</a>-->
@@ -29,7 +30,7 @@
         <img alt="图片" [src]="productImgUrl[0]">
       </div>
       <div class="card-footer">
-        <a *ngIf="userInfo" [routerLink]="['article', userInfo.userId]">个人博客</a>
+        <a *ngIf="userInfo" [routerLink]="['/blog', userInfo.nickName]">个人博客</a>
       </div>
     </div>
     <div class="card">

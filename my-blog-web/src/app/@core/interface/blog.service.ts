@@ -19,14 +19,14 @@ export abstract class BlogService {
 
   /**
    * 博客搜索
-   * @param userId 用户id
+   * @param nickName 用户的昵称
    * @param pageIndex 页数
    * @param pageSize 页条数
    * @param type 博客分类
    * @param search 搜索内容
    * @param tagName 标签名称
    */
-  abstract searchUserBlog(userId: number, pageIndex: number, pageSize: number, type?: string, search?: string, tagName?: string): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>;
+  abstract searchUserBlog(nickName: string, pageIndex: number, pageSize: number, type?: string, search?: string, tagName?: string): Observable<ReturnModel<PageResult<BlogAndTypeAndTagGroup>>>;
 
   /**
    * 通过用户的id和博客的标题查询博客

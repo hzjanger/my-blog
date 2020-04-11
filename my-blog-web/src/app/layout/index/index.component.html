@@ -1,7 +1,7 @@
 <app-drawer-container #drawerComponent>
   <drawer>
     <app-sidenav-user-info></app-sidenav-user-info>
-    <app-index-sidenav-menu *ngIf="userId" [userId]="userId" (tagPress)="tagClick($event)" (blogTypePress)="blogTypeClick($event)" (homePress)="homeClick()"></app-index-sidenav-menu>
+    <app-index-sidenav-menu *ngIf="nickName" [nickName]="nickName" (tagPress)="tagClick($event)" (blogTypePress)="blogTypeClick($event)" (homePress)="homeClick()"></app-index-sidenav-menu>
   </drawer>
   <drawer-content-header>
     <app-header (menuPress)="menuClick()"></app-header>

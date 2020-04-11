@@ -11,9 +11,14 @@ const routes: Routes = [
     children: [
       {path: '', component: IndexContentComponent},
       {
-        path: 'detail/:blogId',
+        path: 'article/:blogId',
         loadChildren: () => import('../article/article.module').then(mod => mod.ArticleModule)
-      },
+      }
+
+      // {
+      //   path: 'detail/:blogId',
+      //   loadChildren: () => import('../article/article.module').then(mod => mod.ArticleModule)
+      // },
     ]
   }
 ];

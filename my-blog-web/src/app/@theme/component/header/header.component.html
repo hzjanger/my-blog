@@ -4,7 +4,7 @@
       <button *ngIf="showMenu" mat-icon-button class="menu" (click)="menuPress.emit()">
         <mat-icon>menu</mat-icon>
       </button>
-      <a *ngIf="userInfo" [routerLink]="['/blog', nickName, 'article', userInfo.userId]">Angel</a>
+      <a *ngIf="userInfo" [routerLink]="['/blog', nickName]">Angel</a>
     </div>
     <form [formGroup]="formGroup" (ngSubmit)="search()">
       <input class="search-input" placeholder="输入搜索内容" formControlName="search">

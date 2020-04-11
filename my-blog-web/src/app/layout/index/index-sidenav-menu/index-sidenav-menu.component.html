@@ -15,7 +15,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <ng-template matExpansionPanelContent>
-      <app-index-blog-type-account *ngIf="userId" [userId]="userId"
+      <app-index-blog-type-account *ngIf="nickName" [nickName]="nickName"
                                    (blogTypePress)="blogTypePress.emit($event)"></app-index-blog-type-account>
     </ng-template>
   </mat-expansion-panel>
@@ -27,7 +27,7 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <ng-template matExpansionPanelContent>
-      <app-index-blog-tag-account *ngIf="userId" [userId]="userId"
+      <app-index-blog-tag-account *ngIf="nickName" [nickName]="nickName"
                                   (tagPress)="tagPress.emit($event)"></app-index-blog-tag-account>
     </ng-template>
   </mat-expansion-panel>

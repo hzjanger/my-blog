@@ -2,7 +2,7 @@
   <div class="left-container">
     <ng-template [ngIf]="pageResult">
       <div class="article" *ngFor="let item of pageResult.rows">
-        <a class="img-box" [routerLink]="['/article/details', nickName, item.blog.id]">
+        <a class="img-box" [routerLink]="['/blog', nickName, 'article', item.blog.id]">
           <header matRipple>
             <img alt="图片" [src]="item.blog.imageUrl">
             <div class="action">

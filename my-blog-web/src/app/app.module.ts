@@ -9,6 +9,8 @@ import {AuthInterceptor} from "./interceptor/auth-interceptor";
 import {ThemeModule} from "./@theme/theme.module";
 import {MaterialModule} from "./@material/material.module";
 import {CoreModule} from "./@core/core.module";
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 export const httpInterceptorProviders = [
   {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
@@ -25,7 +27,8 @@ export const httpInterceptorProviders = [
     HttpClientModule,
     MaterialModule.forRoot(),
     ThemeModule.forRoot(),
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     httpInterceptorProviders

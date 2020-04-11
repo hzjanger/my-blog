@@ -9,8 +9,6 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 import {BlogAndTypeAndTagGroup} from "../../../entity/group/BlogAndTypeAndTagGroup";
 import {BlogType} from "../../../model/blog-type";
 import {Tag} from "../../../model/tag";
-import {TagService} from "../../../@core/interface/tag-service";
-import {TagWordCloud} from "../../../entity/chart/tag-word-cloud";
 
 @Component({
   selector: 'app-index-content',
@@ -30,11 +28,6 @@ export class IndexContentComponent implements OnInit {
    * 用户的昵称
    */
   nickName: string;
-
-  /**
-   * 用户id
-   */
-  userId: number;
 
   /**
    * 页条数
@@ -61,18 +54,12 @@ export class IndexContentComponent implements OnInit {
    */
   search: string = null;
 
-  chartOption: any;
-
-
   constructor(private blogService: BlogService, private blogTypeAccountService: BlogTypeAccountService,
-              private router: Router, private route: ActivatedRoute, private tagService: TagService) {
+              private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    // @ts-ignore
-    require('echarts-wordcloud');
     this.nickName = this.route.snapshot.paramMap.get('nickName');
-    this.userId = +this.route.snapshot.paramMap.get('userId');
     this.route.queryParamMap.subscribe((params: Params) => {
       this.pageIndex = +params.get('pageIndex') || 1;
       this.pageSize = +params.get('pageSize') || 10;
@@ -83,15 +70,10 @@ export class IndexContentComponent implements OnInit {
     });
     this.findUserBlogTypeAccount();
 
-    this.tagService.tagOfBlogAccount(this.userId).subscribe(data => {
-      if (data.code === CodeEnum.SUCCESS) {
-        this.onInit(data.data);
-      }
-    })
-
   }
 
-  onInit(data: TagWordCloud[]) {
+  /**
+   onInit(data: TagWordCloud[]) {
     this.chartOption = {
       tooltip: {
         show: true
@@ -120,12 +102,13 @@ export class IndexContentComponent implements OnInit {
       }]
     };
   }
+   */
 
   /**
    * 查找用户最新的博客
    */
   searchUserBlog() {
-    this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize, this.type, this.search, this.tagName).subscribe(data => {
+    this.blogService.searchUserBlog(this.nickName, this.pageIndex, this.pageSize, this.type, this.search, this.tagName).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.pageResult = data.data;
         // 滚动到最上面
@@ -141,7 +124,7 @@ export class IndexContentComponent implements OnInit {
    * 查找用户博客分类数量
    */
   findUserBlogTypeAccount() {
-    this.blogTypeAccountService.findUserBlogTypeAccount(this.userId).subscribe(data => {
+    this.blogTypeAccountService.findUserBlogTypeAccount(this.nickName).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.blogTypeAccount = data.data;
       }
@@ -155,16 +138,6 @@ export class IndexContentComponent implements OnInit {
   page(pageEvent: PageEvent) {
     this.pageIndex = pageEvent.pageIndex + 1;
     this.pageSize = pageEvent.pageSize;
-    this.routerJump();
-  }
-
-  /**
-   * 搜索博客分类
-   * @param blogTypeAccount
-   */
-  blogTypeSearch(blogTypeAccount: BlogTypeAccount) {
-    this.type = blogTypeAccount.typeName;
-    this.pageIndex = 1;
     this.routerJump();
   }
 
@@ -216,14 +189,14 @@ export class IndexContentComponent implements OnInit {
    * 词云图点击事件
    * @param outputData 点击的数据
    */
-  chartClick(outputData: any) {
+/*  chartClick(outputData: any) {
     const tagWordCloud: TagWordCloud = outputData.data;
     if (tagWordCloud) {
       this.tagName = tagWordCloud.name;
       this.pageIndex = 1;
       this.routerJump();
     }
-  }
+  }*/
 
 
 }

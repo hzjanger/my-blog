@@ -54,8 +54,12 @@ export class TagImplService extends TagService {
   }
 
 
-  tagOfBlogAccount(userId: number): Observable<ReturnModel<TagWordCloud[]>> {
-    return this.http.get<ReturnModel<TagWordCloud[]>>(`${this.url}/tagOfBlogAccount/${userId}`);
+  /**
+   * 通过用户的昵称查找每种标签的数量
+   * @param nickName 用户的昵称
+   */
+  tagOfBlogAccount(nickName: string): Observable<ReturnModel<TagWordCloud[]>> {
+    return this.http.get<ReturnModel<TagWordCloud[]>>(`${this.url}/tagOfBlogAccount/${nickName}`);
   }
 
   /**

@@ -16,7 +16,7 @@ export class IndexBlogTagAccountComponent implements OnInit {
    * 用户id
    */
   @Input()
-  userId: number;
+  nickName: string;
 
   @Output()
   tagPress: EventEmitter<TagWordCloud> = new EventEmitter<TagWordCloud>();
@@ -32,7 +32,7 @@ export class IndexBlogTagAccountComponent implements OnInit {
    * 查询标签数量
    */
   tagOfBlogAccount() {
-    this.tagService.tagOfBlogAccount(this.userId).subscribe(data => {
+    this.tagService.tagOfBlogAccount(this.nickName).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.menuList = data.data;
       }

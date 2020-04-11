@@ -52,7 +52,7 @@ export class MyArticleComponent implements OnInit {
    * 得到博客列表
    */
   getMyBlogList() {
-    this.blogService.searchUserBlog(this.userId, this.pageIndex, this.pageSize).subscribe(data => {
+    this.blogService.searchUserBlog(this.nickName, this.pageIndex, this.pageSize).subscribe(data => {
       if (data.code === CodeEnum.SUCCESS) {
         this.pageResult = data.data;
       }

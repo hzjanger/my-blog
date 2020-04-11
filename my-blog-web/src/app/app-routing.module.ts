@@ -11,19 +11,28 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./layout/admin/admin.module').then(mod => mod.AdminModule)
   },
+  // {
+  //   path: 'blog/:nickName',
+  //   loadChildren: () => import('./layout/angel/angel.module').then(mod => mod.AngelModule)
+  // },
+  // {
+  //   path: 'article',
+  //   loadChildren: () => import('./layout/article/article.module').then(mod => mod.ArticleModule)
+  // },
   {
     path: 'blog/:nickName',
-    loadChildren: () => import('./layout/angel/angel.module').then(mod => mod.AngelModule)
-  },
-  {
-    path: 'article',
-    loadChildren: () => import('./layout/article/article.module').then(mod => mod.ArticleModule)
+    loadChildren: () => import('./layout/index/index.module').then(module => module.IndexModule)
   },
   {
     path: 'resume',
     loadChildren: () => import('./layout/resume/resume.module').then(mod => mod.ResumeModule)
   },
-  {path: '', redirectTo: 'blog/hzjangel', pathMatch: 'full'}
+  {
+    path: 'index/:nickName',
+    loadChildren: () => import('./layout/angel/angel.module').then(mod => mod.AngelModule)
+
+  }
+  // {path: '', redirectTo: 'blog/hzjangel', pathMatch: 'full'}
 ];
 
 @NgModule({

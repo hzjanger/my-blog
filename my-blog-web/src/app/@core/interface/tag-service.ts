@@ -38,10 +38,10 @@ export abstract class TagService {
   abstract findTagByBlogTypeId(blogTypeId: number): Observable<ReturnModel<Tag[]>>;
 
   /**
-   * 统计用户每个标签的数量
-   * @param userId 用户id
+   * 通过用户的昵称查找每种标签的数量
+   * @param nickName 用户的昵称
    */
-  abstract tagOfBlogAccount(userId: number): Observable<ReturnModel<TagWordCloud[]>>;
+  abstract tagOfBlogAccount(nickName: string): Observable<ReturnModel<TagWordCloud[]>>;
 
   /**
    * 更新标签信息

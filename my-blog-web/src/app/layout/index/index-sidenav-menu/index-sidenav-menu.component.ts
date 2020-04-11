@@ -10,10 +10,10 @@ import {TagWordCloud} from "../../../entity/chart/tag-word-cloud";
 export class IndexSidenavMenuComponent implements OnInit {
 
   /**
-   * 用户id
+   * 用户的昵称
    */
   @Input()
-  userId: number;
+  nickName: string;
 
   @Output()
   tagPress: EventEmitter<TagWordCloud> = new EventEmitter<TagWordCloud>();
