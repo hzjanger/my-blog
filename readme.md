@@ -34,10 +34,10 @@ ng build --prod
 docker build -f Dockerfile -t my-blog .
 
 # IMAGE ID为镜像的id, TAG为版本号,可以不写,不写默认为latest
-docker tag <IMAGE ID> registry.cn-beijing.aliyuncs.com/hezhijian/blog:[TAG]
+docker tag <IMAGE ID> registry.cn-beijing.aliyuncs.com/hezhijian/my-blog:[TAG]
 
 # 提交docker到阿里云镜像
-docker push registry.cn-beijing.aliyuncs.com/hezhijian/blog:[TAG]
+docker push registry.cn-beijing.aliyuncs.com/hezhijian/my-blog:[TAG]
 ```
 
 ### 登录自己的服务器
@@ -46,10 +46,10 @@ docker push registry.cn-beijing.aliyuncs.com/hezhijian/blog:[TAG]
 ssh user@IPAddress
 
 # 将上传的镜像pull下来
-docker pull registry.cn-beijing.aliyuncs.com/hezhijian/blog
+docker pull registry.cn-beijing.aliyuncs.com/hezhijian/my-blog
 
 # 名字太长了,换个名字
-docker tag <IMAGE ID> my-blog
+docker tag registry.cn-beijing.aliyuncs.com/hezhijian/blog:latest my-blog
 
 # 启动镜像
 docker run --name blog -p 4200:80 -d my-blog
