@@ -31,8 +31,8 @@ const routes: Routes = [
     path: 'index/:nickName',
     loadChildren: () => import('./layout/angel/angel.module').then(mod => mod.AngelModule)
 
-  }
-  // {path: '', redirectTo: 'blog/hzjangel', pathMatch: 'full'}
+  },
+  {path: '', redirectTo: 'blog/hzjangel', pathMatch: 'full'}
 ];
 
 @NgModule({
