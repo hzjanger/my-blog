@@ -32,7 +32,7 @@ public interface BlogMapper {
      * @param id 博客id
      * @return 博客信息
      */
-    @Select("SELECT id, title, markdown, userId, blogTypeId, tagId, updateDate FROM blog WHERE id = #{id}")
+    @Select("SELECT id, title, markdown, userId, blogTypeId, tagId, imageUrl, updateDate FROM blog WHERE id = #{id}")
     Blog findBlogById(@Param("id") Integer id);
 
     /**
@@ -61,7 +61,7 @@ public interface BlogMapper {
      * @param title  博客标题
      * @return 查询到的博客信息
      */
-    @Select("SELECT id, title, userId, blogTypeId, tagId, description FROM blog WHERE title = #{title} AND userId = #{userId}")
+    @Select("SELECT id, title, userId, blogTypeId, tagId, description, imageUrl FROM blog WHERE title = #{title} AND userId = #{userId}")
     Blog findBlogByUserIdAndTitle(@Param("userId") Integer userId, @Param("title") String title);
 
     /**

@@ -28,7 +28,7 @@ export class ArticleComponent implements OnInit {
   config: EditorConfig;
 
   /**
-   * 博客id
+   * 博客id,有博客的id,那么为更新,没有博客的id为新增
    */
   blogId: number;
 
@@ -51,6 +51,7 @@ export class ArticleComponent implements OnInit {
       markdown: [null, [Validators.required]]
     });
     this.route.paramMap.subscribe((params: Params) => {
+      // 通过路径获取博客的id
       this.blogId = +params.get('blogId');
       if (this.blogId) {
         this.findBlogById();
@@ -78,7 +79,11 @@ export class ArticleComponent implements OnInit {
     }
     const userId = JSON.parse(StorageMessage.getUserInfo()).userId;
     this.blogService.findBlogByUserIdAndTitle(userId, this.title.value).subscribe(data => {
-      // 查找到了
+      /*
+      找到的情况分为更新和新建,
+      如果是新建找到了,那么就冲突了
+      如果是更新找到了,如果博客的id和找到的id不一样,那么就冲突了,如果博客的id和找到的id一样,那么就没冲突(没有改标题所以可以找到)
+       */
       if (data.code === 1) {
         if (!this.blogId) {
           // 新增文章的标题和其他的冲突
@@ -113,8 +118,10 @@ export class ArticleComponent implements OnInit {
       if (result) {
         const userId = JSON.parse(StorageMessage.getUserInfo()).userId;
         if (this.blogId) {
-          const blog: Blog = {...result, ...this.formGroup.value, userId, id: this.blogId};
-          this.updateBlog(blog);
+          console.log(blog);
+          const updateBlog: Blog = {...blog, ...result, ...this.formGroup.value, userId, id: this.blogId};
+          console.log(updateBlog);
+          this.updateBlog(updateBlog);
         } else {
           const num = Math.floor(Math.random() * 18 + 1);
           const blog: Blog = {
@@ -151,7 +158,7 @@ export class ArticleComponent implements OnInit {
       if (data.code === CodeEnum.SUCCESS) {
         this.snackBarService.success(data.message);
         const nickName = JSON.parse(StorageMessage.getUserInfo()).nickName;
-        this.router.navigate([`/article/details`, nickName, this.blogId]);
+        this.router.navigate([`/blog`, nickName, 'article', this.blogId]);
       }
     });
   }

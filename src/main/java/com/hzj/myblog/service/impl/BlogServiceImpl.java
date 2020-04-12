@@ -73,7 +73,6 @@ public class BlogServiceImpl implements BlogService {
     public void updateBlog(Blog blog) {
         // 设置更新时间
         blog.setUpdateDate(new Date());
-        System.out.println(blog);
         blogMapper.updateBlog(blog);
     }
 }
