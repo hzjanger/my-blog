@@ -49,7 +49,7 @@ ssh user@IPAddress
 docker pull registry.cn-beijing.aliyuncs.com/hezhijian/my-blog
 
 # 名字太长了,换个名字
-docker tag registry.cn-beijing.aliyuncs.com/hezhijian/blog:latest my-blog
+docker tag registry.cn-beijing.aliyuncs.com/hezhijian/my-blog:latest my-blog
 
 # 启动镜像
 docker run --name blog -p 4200:80 -d my-blog
